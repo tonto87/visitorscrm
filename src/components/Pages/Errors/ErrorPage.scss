@@ -1,0 +1,35 @@
+.error-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 20px;
+
+  .error-content {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .display-1 {
+    font-size: 6rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    margin-top: 20px;
+    font-size: 1.75rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin: 15px 0;
+  }
+
+  .btn-error {
+    margin-top: 20px;
+  }
+}

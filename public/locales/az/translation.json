@@ -1,0 +1,558 @@
+{
+  "general": {
+    "welcome": "Tətbiqimizə xoş gəlmisiniz!",
+    "description": "Təsvir",
+    "name": "Ad",
+    "phone": "Telefon",
+    "email": "E-poçt",
+    "actions": "Əməliyyatlar",
+    "loading": "Yüklənir...",
+    "submit": "Göndər",
+    "success": "Əməliyyat uğurla tamamlandı!",
+    "error": "Xəta baş verdi",
+    "logout": "Çıxış",
+    "cancel": "İmtina",
+    "close": "Bağla",
+    "confirm": "Təsdiq et",
+    "delete": "Sil"
+  },
+
+  "navigation": {
+    "dashboard": "İdarəetmə Paneli",
+    "officesDepartments": "Ofislər və Şöbələr",
+    "offices": "Ofislər",
+    "departments": "Şöbələr",
+    "visitors": "Ziyarətçilər",
+    "personaNonGrata": "Persona Non Grata",
+    "usersPermissions": "İstifadəçilər və İcazələr",
+    "users": "İstifadəçilər",
+    "permissions": "İcazələr",
+    "all": "Hamısı",
+    "add": "Əlavə et",
+    "report": "Şikayət"
+  },
+
+  "breadcrumbs": {
+    "dashboard": "İdarəetmə Paneli",
+    "users": "İstifadəçilər",
+    "addUser": "İstifadəçi Əlavə Et",
+    "editUser": "Profil",
+    "deleteUser": "İstifadəçini Sil",
+    "offices": "Ofislər",
+    "addOffice": "Ofis Əlavə Et",
+    "editOffice": "Ofisi Redaktə Et",
+    "deleteOffice": "Ofisi Sil",
+    "departments": "Şöbələr",
+    "addDepartment": "Şöbə Əlavə Et",
+    "editDepartment": "Şöbəni Redaktə Et",
+    "deleteDepartment": "Şöbəni Sil",
+    "visitors": "Ziyarətçilər",
+    "addVisitor": "Ziyarətçi Əlavə Et",
+    "editVisitor": "Ziyarətçini Redaktə Et",
+    "deleteVisitor": "Ziyarətçini Sil",
+    "showVisitor": "Ziyarətçi Məlumatları",
+    "personaAll": "Persona Non Grata Listi",
+    "complaints": "Şikayətlər"
+  },
+
+  "dashboard": {
+    "sections": {
+      "visitors": {
+        "title": "Ziyarətçilər Baxışı",
+        "headers": {
+          "doc_id": "Fin",
+          "name": "Ad",
+          "phone": "Telefon",
+          "email": "E-poçt"
+        },
+        "noData": "Ziyarətçi mövcud deyil"
+      },
+      "offices": {
+        "title": "Ofislər Baxışı",
+        "headers": {
+          "name": "Ofis Adı",
+          "address": "Ünvan",
+          "phone": "Telefon Nömrəsi"
+        },
+        "noData": "Ofis mövcud deyil"
+      },
+      "departments": {
+        "title": "Şöbələr Baxışı",
+        "headers": {
+          "name": "Şöbə Adı",
+          "phone": "Telefon",
+          "office": "Ofis"
+        },
+        "noData": "Şöbə mövcud deyil"
+      },
+      "users": {
+        "title": "İstifadəçilər Baxışı",
+        "headers": {
+          "name": "Ad",
+          "email": "E-poçt",
+          "role": "Rol",
+          "department": "Şöbə"
+        },
+        "noData": "İstifadəçi mövcud deyil"
+      }
+    },
+    "actions": {
+      "openFullList": "Tam Siyahını Aç",
+      "addVisitor": "Ziyarətçi Əlavə Et"
+    }
+  },
+
+  "user": {
+    "all": {
+      "title": "İstifadəçilər",
+      "add": "İstifadəçi Əlavə Et",
+      "searchPlaceholder": "İstifadəçi axtar",
+      "name": "Ad",
+      "office": "Ofis",
+      "department": "Şöbə",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "role": "Rol",
+      "actions": "Əməliyyatlar",
+      "edit": "Redaktə Et",
+      "delete": "Sil",
+      "deleteConfirm": "Bu istifadəçini silmək istədiyinizdən əminsiniz?",
+      "deleteSuccess": "İstifadəçi uğurla silindi.",
+      "deleteError": "İstifadəçini silmək alınmadı."
+    },
+    "add": {
+      "title": "İstifadəçi Əlavə Et",
+      "name": "Ad",
+      "username": "İstifadəçi adı",
+      "email": "E-poçt",
+      "phone": "Telefon",
+      "role": "Rol",
+      "department": "Şöbə",
+      "office": "Ofis",
+      "password": "Şifrə",
+      "confirmPassword": "Şifrəni Təsdiq Et",
+      "submitting": "Göndərilir...",
+      "submit": "Göndər",
+      "success": "İstifadəçi uğurla əlavə olundu!",
+      "error": "İstifadəçi əlavə edilərkən xəta baş verdi.",
+      "roleSelect": "Rol seçin",
+      "departmentSelect": "Şöbə seçin",
+      "officeSelect": "Ofis seçin",
+      "generatePassword": "Şifrə yarat"
+    },
+    "edit": {
+      "title": "İstifadəçini Redaktə Et",
+      "name": "Ad",
+      "username": "İstifadəçi adı",
+      "email": "E-poçt",
+      "phone": "Telefon",
+      "role": "Rol",
+      "department": "Şöbə",
+      "office": "Ofis",
+      "password": "Şifrə",
+      "confirmPassword": "Şifrəni Təsdiq Et",
+      "active": "Aktiv",
+      "submitting": "Göndərilir...",
+      "submit": "Göndər",
+      "success": "İstifadəçi uğurla yeniləndi!",
+      "error": "İstifadəçi yenilənərkən xəta baş verdi."
+    },
+    "delete": {
+      "confirm": "Bu istifadəçini silmək istədiyinizdən əminsiniz?",
+      "success": "İstifadəçi uğurla silindi!",
+      "error": "İstifadəçi silinərkən xəta baş verdi."
+    },
+    "profile": {
+      "title": "Profil",
+      "name": "Ad",
+      "email": "E-poçt",
+      "phone": "Telefon",
+      "newPassword": "Yeni Şifrə",
+      "confirmPassword": "Təsdiq Şifrəsi",
+      "updatePassword": "Şifrəni Yenilə",
+      "submitting": "Yenilənir...",
+      "passwordUpdated": "Şifrə uğurla yeniləndi!",
+      "updateError": "Şifrəni yeniləmək mümkün olmadı, zəhmət olmasa yenidən cəhd edin."
+    }
+  },
+
+  "visitors": {
+    "all": {
+      "title": "Ziyarətçilər",
+      "add": "Ziyarətçi Əlavə Et",
+      "searchPlaceholder": "Ad, Fin və ya Telefon axtar",
+      "name": "Ad",
+      "photo": "Şəkil",
+      "docType": "Sənəd Növü",
+      "fin": "Fin",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "actions": "Əməliyyatlar",
+      "view": "Məlumatları Göstər",
+      "edit": "Redaktə Et",
+      "delete": "Sil",
+      "deleteConfirm": "Bu ziyarətçini silmək istədiyinizdən əminsiniz?",
+      "deleteSuccess": "Ziyarətçi uğurla silindi.",
+      "deleteError": "Ziyarətçini silmək alınmadı.",
+      "visitTime": "Ziyarət Vaxtı",
+      "visitTimeCount": "Ziyarət müddəti",
+      "notStarted": "Başlanmamış"
+    },
+    "add": {
+      "title": "Ziyarətçi Əlavə Et",
+      "name": "Ad",
+      "photo": "Şəkil",
+      "docType": "Sənəd Növü",
+      "doc_id": "Sənəd nömrəsi",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "address": "Ünvan",
+      "visitTime": "Ziyarət Vaxtı",
+      "visitingNow": "Indi Ziyarət edir",
+      "addItem": "Əşyaları Əlavə Et",
+      "itemName": "Əşya Adı",
+      "itemDescription": "Əşya Təsviri",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "reset": "Təmizlə",
+      "success": "Ziyarətçi uğurla əlavə olundu!",
+      "error": "Ziyarətçi əlavə edilərkən xəta baş verdi."
+    },
+    "edit": {
+      "title": "Ziyarətçini Redaktə Et",
+      "name": "Ad",
+      "photo": "Şəkil",
+      "docType": "Sənəd Növü",
+      "doc_id": "Fin",
+
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "success": "Ziyarətçi uğurla yeniləndi!",
+      "error": "Ziyarətçi yenilənərkən xəta baş verdi.",
+      "addItem": "Əşyaları Əlavə Et",
+      "itemName": "Əşya Adı",
+      "fin": "FIN",
+
+      "itemDescription": "Əşya Təsviri",
+      "visitTime": "Ziyarət Vaxtı",
+      "addPhoto": "Səkil əlavə et",
+      "address": "Ünvan",
+      "visitingNow": "Indi Ziyarət edir"
+    },
+    "view": {
+      "title": "Ziyarətçi Məlumatları",
+      "name": "Ad",
+      "photo": "Şəkil",
+      "docType": "Sənəd Növü",
+      "fin": "Fin",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "address": "Ünvan",
+      "items": "Əşyalar",
+      "actions": "Əməliyyatlar",
+      "edit": "Redaktə Et",
+      "delete": "Sil",
+      "deleteConfirm": "Bu ziyarətçini silmək istədiyinizdən əminsiniz?",
+      "deleteSuccess": "Ziyarətçi uğurla silindi.",
+      "deleteError": "Ziyarətçini silmək alınmadı.",
+      "report": "Şikayət Et",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "successReport": "Şikayətiniz uğurla göndərildi!",
+      "errorReport": "Şikayət göndərilmədi.",
+      "emptyDescriptionError": "Zəhmət olmasa, şikayətinizə təsvir əlavə edin.",
+      "complaints": "Şikayətlər",
+      "noComplaints": "Heç bir şikayət tapılmadı.",
+      "unknown": "Bilinmir",
+      "reporter": "Bildirən",
+      "complainedAt": "Şikayət Tarixi",
+      "startVisit": "Ziyarəti Başlat",
+      "endVisit": "Ziyarəti Bitir",
+      "startVisitError": "Ziyarəti başlatmaq alınmadı.",
+      "startVisitSuccess": "Ziyarət uğurla başladı.",
+      "endVisitError": "Ziyarəti bitirmək alınmadı.",
+      "endVisitSuccess": "Ziyarət uğurla başa çatdı.",
+      "blocked": "Persona Non Grata"
+    }
+  },
+
+  "office": {
+    "all": {
+      "title": "Ofislər",
+      "add": "Ofis Əlavə Et",
+      "searchPlaceholder": "Ofis axtar",
+      "name": "Ad",
+      "address": "Ünvan",
+      "phone": "Telefon",
+      "actions": "Əməliyyatlar",
+      "edit": "Redaktə Et",
+      "delete": "Sil",
+      "deleteConfirm": "Bu ofisi silmək istədiyinizdən əminsiniz?",
+      "deleteSuccess": "Ofis uğurla silindi.",
+      "deleteError": "Ofisi silmək alınmadı."
+    },
+    "add": {
+      "title": "Ofis Əlavə Et",
+      "name": "Ofisin adı",
+      "address": "Ünvan",
+      "phone": "Telefon",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "success": "Ofis uğurla əlavə olundu!",
+      "error": "Ofis əlavə edilərkən xəta baş verdi."
+    },
+    "edit": {
+      "title": "Ofisi Redaktə Et",
+      "name": "Ofisin adı",
+      "address": "Ünvan",
+      "phone": "Telefon",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "success": "Ofis uğurla yeniləndi!",
+      "error": "Ofis yenilənərkən xəta baş verdi."
+    }
+  },
+
+  "department": {
+    "add": {
+      "title": "Şöbə Əlavə Et",
+      "name": "Şöbənin adı",
+      "address": "Ünvan",
+      "phone": "Telefon",
+      "office": "Ofis",
+      "officeSelect": "Ofis seçin",
+      "submitting": "Göndərilir...",
+      "submit": "Göndər",
+      "success": "Şöbə uğurla əlavə olundu!",
+      "error": "Şöbə əlavə edilərkən xəta baş verdi."
+    },
+    "all": {
+      "title": "Bütün Şöbələr",
+      "add": "Şöbə Əlavə Et",
+      "searchPlaceholder": "Şöbə axtar",
+      "name": "Ad",
+      "address": "Ünvan",
+      "phone": "Telefon",
+      "office": "Ofis",
+      "actions": "Əməliyyatlar",
+      "edit": "Redaktə Et",
+      "delete": "Sil",
+      "deleteConfirm": "Bu şöbəni silmək istədiyinizdən əminsiniz?",
+      "deleteSuccess": "Şöbə uğurla silindi.",
+      "deleteError": "Şöbə silmək alınmadı."
+    },
+    "edit": {
+      "title": "Şöbəni Redaktə Et",
+      "name": "Ad",
+      "address": "Ünvan",
+      "phone": "Telefon",
+      "office": "Ofis",
+      "officeSelect": "Ofis seçin",
+      "submitting": "Göndərilir...",
+      "submit": "Göndər",
+      "success": "Şöbə uğurla yeniləndi!",
+      "error": "Şöbə yenilənərkən xəta baş verdi."
+    }
+  },
+
+  "persona": {
+    "all": {
+      "add": "Persona Non Grata Əlavə Et",
+      "unblock": "Blokdan Çıxar",
+      "searchPlaceholder": "Ad, Fin və ya Telefon axtar",
+      "name": "Ad",
+      "photo": "Şəkil",
+      "docType": "Sənəd Növü",
+      "doc_id": "Fin",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "actions": "Əməliyyatlar"
+    },
+    "add": {
+      "title": "Persona Non Grata Əlavə Et",
+      "name": "Ad",
+      "photo": "Şəkil",
+      "docType": "Sənəd Növü",
+      "doc_id": "Fin",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "address": "Ünvan",
+      "description": "Təsvir",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "success": "Persona Non Grata uğurla əlavə olundu!",
+      "error": "Persona Non Grata əlavə edilərkən xəta baş verdi.",
+      "actions": "Əməliyyatlar",
+      "search_placeholder": "Ad, Fin və ya Telefon axtar"
+    }
+  },
+
+  "complaints": {
+    "all": {
+      "title": "Şikayətlər",
+      "add": "Şikayət Et",
+      "searchPlaceholder": "Ad, Fin və ya Telefon axtar",
+      "name": "Ad",
+      "photo": "Şəkil",
+      "docType": "Sənəd Növü",
+      "doc_id": "Fin",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "actions": "Əməliyyatlar",
+      "view": "Məlumatları Göstər",
+      "edit": "Redaktə Et",
+      "delete": "Sil",
+      "deleteConfirm": "Bu şikayəti silmək istədiyinizdən əminsiniz?",
+      "deleteSuccess": "Şikayət uğurla silindi.",
+      "deleteError": "Şikayət silmək alınmadı.",
+      "complainedAt": "Şikayət Tarixi",
+      "description": "Təsvir",
+      "emptyDescriptionError": "Zəhmət olmasa, şikayətinizə təsvir əlavə edin.",
+      "status": "Status",
+      "resolved": "Həll Edildi",
+      "pending": "Gözləmədədir",
+      "actionsColumn": "Əməliyyatlar Sütunu",
+      "resolutionDate": "Həll Tarixi",
+      "filterByStatus": "Statusa görə filter et",
+      "noResults": "Şikayətlər tapılmadı.",
+      "createComplaint": "Yeni Şikayət Yarat",
+      "viewDetails": "Şikayət Təfərrüatları",
+      "reportedBy": "Şikayət edən",
+      "report": "Şikayət Hesabatı"
+    },
+    "add": {
+      "title": "Şikayət Et",
+      "name": "Ad",
+      "photo": "Şəkil",
+      "docType": "Sənəd Növü",
+      "doc_id": "Fin",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "address": "Ünvan",
+      "description": "Təsvir",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "success": "Şikayətiniz uğurla göndərildi!",
+      "error": "Şikayət göndərilmədi."
+    }
+  },
+
+  "login": {
+    "welcome": "Tətbiqimizə xoş gəlmisiniz!",
+    "loginWithEmail": "E-poçt və ya İstifadəçi Adı ilə daxil olun",
+    "email": "E-poçt və ya İstifadəçi Adını daxil edin",
+    "password": "Şifrəni daxil edin",
+    "keepMeLoggedIn": "Məni daxil olmuş vəziyyətdə saxla",
+    "forgotPasswordLink": "Şifrəni unutdunuz?",
+    "loginButton": "Daxil ol",
+    "loggingIn": "Daxil olunur...",
+    "forgot": {
+      "forgotPassword": "Şifrəni unutdunuz?",
+      "enterEmailForReset": "Şifrəni sıfırlamaq üçün e-poçt ünvanınızı daxil edin",
+      "sendResetLinkButton": "Sıfırlama linkini göndər",
+      "email": "E-poçt ünvanını daxil edin"
+    },
+    "reset": {
+      "title": "Şifrəni sıfırlayın",
+      "enterResetTokenAndNewPassword": "Şifrəni sıfırlamaq üçün token və yeni şifrəni daxil edin",
+      "email": "E-poçt ünvanını daxil edin",
+      "newPassword": "Yeni Şifrə",
+      "confirmNewPassword": "Yeni Şifrəni Təsdiq Et",
+      "resetPasswordButton": "Şifrəni sıfırlayın"
+    },
+    "toast": {
+      "passwordsDoNotMatch": "Şifrələr uyğun gəlmir.",
+      "pleaseEnterEmailAndPassword": "Zəhmət olmasa, həm e-poçt, həm də şifrə daxil edin.",
+      "pleaseEnterEmailAddress": "Zəhmət olmasa, e-poçt ünvanını daxil edin.",
+      "pleaseCheckYourEmail": "Zəhmət olmasa, e-poçt ünvanınızı yoxlayın.",
+      "passwordResetSuccess": "Şifrə uğurla sıfırlandı!",
+      "invalidEmailOrPassword": "Yanlış e-poçt və ya şifrə. Zəhmət olmasa, yenidən cəhd edin.",
+      "emailAlreadyInUse": "Bu e-poçt artıq istifadə olunur.",
+      "emailNotFound": "E-poçt ünvanı tapılmadı.",
+      "checkYourEmailForResetLink": "Şifrə sıfırlama linkini əldə etmək üçün e-poçt ünvanınızı yoxlayın."
+    },
+    "backToLogin": "Geri"
+  },
+
+  "error": {
+    "forbidden": {
+      "title": "403",
+      "message": "Qadağan olunub",
+      "description": "Bu səhifəyə giriş icazəniz yoxdur.",
+      "goHome": "Ana səhifəyə qayıt"
+    },
+    "notFound": {
+      "title": "404",
+      "message": "Səhifə tapılmadı",
+      "description": "Axtardığınız səhifə mövcud deyil.",
+      "goHome": "Ana səhifəyə qayıt"
+    },
+    "internalServer": {
+      "title": "500",
+      "message": "Gözlənilməz bir səhv baş verdi. Zəhmət olmasa, bir az sonra yenidən cəhd edin.",
+      "description": "Narahatçılığa görə üzr istəyirik. Komandamız məlumatlandırılıb və biz problemi mümkün qədər tez həll etməyə çalışırıq.",
+      "goHome": "Ana səhifəyə qayıt"
+    }
+  },
+
+  "webcam": {
+    "capturePhoto": "Səkil Çək",
+    "reset": "Yenilə",
+    "close": "Bağla",
+    "confirm": "Qəbul et"
+  },
+
+  "validations": {
+    "required": {
+      "officeName": "Ofis adı mütləq daxil edilməlidir.",
+      "address": "Ünvan mütləq daxil edilməlidir.",
+      "phone": "Telefon nömrəsi mütləq daxil edilməlidir.",
+      "departmentName": "Şöbə adı mütləq daxil edilməlidir.",
+      "office": "Ofis seçimi mütləqdir.",
+      "name": "Ad mütləq daxil edilməlidir.",
+      "username": "İstifadəçi adı mütləq daxil edilməlidir.",
+      "email": "E-poçt mütləq daxil edilməlidir.",
+      "role": "Rol mütləq daxil edilməlidir.",
+      "department": "Şöbə mütləq daxil edilməlidir.",
+      "password": "Şifrə mütləq daxil edilməlidir.",
+      "passwordConfirmation": "Şifrə təsdiqi mütləqdir.",
+      "doc_id": "Sənəd nömrəsi ən azı 3 simvoldan ibarət olmalıdır."
+    },
+    "minLength": {
+      "officeName": "Ofis adı ən azı 3 simvoldan ibarət olmalıdır.",
+      "address": "Ünvan ən azı 5 simvoldan ibarət olmalıdır.",
+      "departmentName": "Şöbə adı ən azı 3 simvoldan ibarət olmalıdır.",
+      "name": "Ad ən azı 3 simvoldan ibarət olmalıdır.",
+      "username": "İstifadəçi adı ən azı 3 simvoldan ibarət olmalıdır.",
+      "password": "Şifrə ən azı 8 simvoldan ibarət olmalıdır.",
+      "doc_id": "Sənəd nömrəsi ən azı 3 simvoldan ibarət olmalıdır."
+    },
+    "pattern": {
+      "phone": "Telefon yalnız rəqəmlərdən ibarət olmalıdır.",
+      "email": "Yanlış e-poçt formatı."
+    },
+    "match": {
+      "password": "Şifrələr uyğun gəlməlidir."
+    }
+  },
+
+  "visitorBlockModal": {
+    "title": "Ziyarətçi Blokla",
+    "success": "Ziyarətçi uğurla bloklanmışdır.",
+    "error": "Ziyarətçi bloklanarkən xəta baş verdi.",
+    "blockWarning": "Bu ziyarətçini bloklamaq istədiyinizdən əminsiniz?",
+    "unblockWarning": "Bu ziyarətçini blokldan cixartmaq istədiyinizdən əminsiniz?",
+    "block": "Blokla",
+    "unblock": "Blokdan Çıxar",
+    "unblockSuccess": "Ziyarətçi uğurla blokdan çıxarıldı.",
+    "unblockError": "Ziyarətçini blokdan çıxarmaq alınmadı."
+  },
+
+  "noDataFound": "Məlumat tapılmadı",
+  "noComplaintsFound": "Heç bir Şikayət tapilmadi",
+  "loading": "Yüklənir...",
+  "allFields": "Bütün sahələr tələb olunur.",
+  "passwordNotMatch": "Parollar uyğun gəlmir."
+}

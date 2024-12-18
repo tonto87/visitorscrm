@@ -1,0 +1,92 @@
+.data-table-container {
+  overflow-x: auto !important;
+  width: 100% !important;
+}
+
+.data-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+
+  &-item {
+    white-space: nowrap !important;
+  }
+
+  th.table-header {
+    background-color: var(--primary-hover) !important;
+    text-align: left !important;
+    padding: 12px 16px !important;
+    font-weight: var(--font-weight-medium) !important;
+    color: var(--white) !important;
+    white-space: nowrap !important;
+  }
+
+  td > div {
+    padding: 10px 16px !important;
+    vertical-align: middle !important;
+    text-align: left !important;
+    color: var(--font-color) !important;
+    font-family: var(--font-family) !important;
+    font-size: var(--font-size-base) !important;
+  }
+
+  .no-data {
+    font-size: var(--font-size-lg) !important;
+    color: var(--font-color-muted) !important;
+    padding: 20px !important;
+  }
+
+  .even-row {
+    background-color: var(--white) !important;
+  }
+
+  .odd-row {
+    background-color: var(--light-gray) !important;
+  }
+
+  tr:hover {
+    background-color: var(--table-hover) !important;
+    transition: background-color 0.2s ease !important;
+  }
+}
+
+.table-actions {
+  width: 200px;
+  .action-buttons {
+    display: flex !important;
+    gap: 8px !important;
+  }
+
+  .action-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 10px !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+    border-radius: 4px !important;
+    color: var(--white) !important;
+    transition: background-color 0.2s ease !important;
+    padding: 0 14px !important;
+    height: 32px !important;
+
+    &.btn-warning {
+      background-color: var(--secondary-color) !important;
+    }
+
+    &.btn-warning:hover {
+      background-color: var(--secondary-color-hover) !important;
+    }
+
+    &.btn-danger {
+      background-color: var(--danger-color) !important;
+    }
+
+    &.btn-danger:hover {
+      background-color: var(--danger-hover) !important;
+    }
+  }
+
+  .action-button:hover {
+    opacity: 0.95 !important;
+  }
+}
