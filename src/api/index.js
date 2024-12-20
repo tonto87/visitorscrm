@@ -2,7 +2,7 @@ import axios from "axios";
 import { AppPaths } from "../constants/appPaths";
 
 const apiClient = axios.create({
-  baseURL: "https://access-api.zenstore.az/api",
+  baseURL: "https://citizen.zenstore.az/api",
   headers: {
     "Content-Type": "application/json",
   },
