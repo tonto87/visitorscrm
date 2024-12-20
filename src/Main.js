@@ -6,6 +6,10 @@ import UsersAdd from "./components/Pages/Users/UsersAdd";
 import UsersAll from "./components/Pages/Users/UsersAll";
 import UsersEdit from "./components/Pages/Users/UsersEdit";
 
+import OfficerAdd from "./components/Pages/Officers/OfficerAdd";
+import OfficerAll from "./components/Pages/Officers/OfficerAll";
+import OfficerEdit from "./components/Pages/Officers/OfficerEdit";
+
 import Dashboard from "./components/dashboard/dashboard";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/header";
@@ -111,6 +115,19 @@ function Main() {
             <Route
               path={AppPaths.users.edit}
               element={<ProtectedRoute element={<UsersEdit />} />}
+            />
+
+            <Route
+              path={AppPaths.officers.add}
+              element={<ProtectedRoute element={<OfficerAdd />} />}
+            />
+            <Route
+              path={AppPaths.officers.all}
+              element={<ProtectedRoute element={<OfficerAll />} />}
+            />
+            <Route
+              path={AppPaths.officers.edit}
+              element={<ProtectedRoute element={<OfficerEdit />} />}
             />
 
             <Route path={AppPaths.profile} element={<Profile />} />

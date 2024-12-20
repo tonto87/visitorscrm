@@ -68,3 +68,19 @@ export const UserValidationSchema = (t) =>
     // .required(t("validations.required.passwordConfirmation")),
     active: Yup.boolean(),
   });
+
+export const OfficerValidationSchema = (t) =>
+  Yup.object({
+    name: Yup.string()
+      .trim()
+      .min(3, t("validations.minLength.officerName"))
+      .required(t("validations.required.officerName")),
+    surname: Yup.string()
+      .trim()
+      .min(3, t("validations.minLength.officerSurname"))
+      .required(t("validations.required.officerSurname")),
+    positon: Yup.string()
+      .trim()
+      .min(3, t("validations.minLength.officerPosition"))
+      .required(t("validations.required.officerPosition")),
+  });

@@ -63,6 +63,14 @@ const sections = [
           { label: "navigation.add", path: AppPaths.users.add },
         ],
       },
+      {
+        title: "navigation.officers",
+        icon: <FaUsers />,
+        items: [
+          { label: "navigation.all", path: AppPaths.officers.all },
+          { label: "navigation.add", path: AppPaths.officers.add },
+        ],
+      },
     ],
   },
 ];

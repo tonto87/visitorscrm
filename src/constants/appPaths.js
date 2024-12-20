@@ -21,6 +21,12 @@ export const AppPaths = {
     edit: "/users/edit/:id",
   },
 
+  officers: {
+    all: "/officers",
+    add: "/officers/add",
+    edit: "/officers/edit/:id",
+  },
+
   visitors: {
     add: "/visitors/add",
     all: "/visitors",

@@ -26,6 +26,7 @@
     "personaNonGrata": "Persona Non Grata",
     "usersPermissions": "İstifadəçilər və İcazələr",
     "users": "İstifadəçilər",
+    "officers": "Zabitlər",
     "permissions": "İcazələr",
     "all": "Hamısı",
     "add": "Əlavə et",
@@ -35,6 +36,9 @@
   "breadcrumbs": {
     "dashboard": "İdarəetmə Paneli",
     "users": "İstifadəçilər",
+    "officers": "Zabitlər",
+    "addOfficer": "Zabit Əlavə Et",
+    "editOfficer": "Zabiti Redaktə Et",
     "addUser": "İstifadəçi Əlavə Et",
     "editUser": "Profil",
     "deleteUser": "İstifadəçini Sil",
@@ -94,6 +98,15 @@
           "department": "Şöbə"
         },
         "noData": "İstifadəçi mövcud deyil"
+      }, 
+      "officers": {
+        "title": "Zabitlər Baxışı",
+        "headers": {
+          "name": "Adı",
+          "surname": "Soyad",
+          "position": "Vəzifə"
+        },
+        "noData": "Zabit mövcud deyil"
       }
     },
     "actions": {
@@ -173,6 +186,42 @@
       "submitting": "Yenilənir...",
       "passwordUpdated": "Şifrə uğurla yeniləndi!",
       "updateError": "Şifrəni yeniləmək mümkün olmadı, zəhmət olmasa yenidən cəhd edin."
+    }
+  },
+  "officer": {
+    "all": {
+      "title": "Zabitlər",
+      "add": "Zabit Əlavə Et",
+      "searchPlaceholder": "Zabit axtar",
+      "name": "Ad",
+      "surname": "Soyad",
+      "position": "Vəzifə",
+      "actions": "Əməliyyatlar",
+      "edit": "Redaktə Et",
+      "delete": "Sil",
+      "deleteConfirm": "Bu Zabiti silmək istədiyinizdən əminsiniz?",
+      "deleteSuccess": "Zabit uğurla silindi.",
+      "deleteError": "Zabiti silmək alınmadı."
+    },
+    "add": {
+      "title": "Zabit Əlavə Et",
+      "name": "Ad",
+      "surname": "Soyad",
+      "position": "Vəzifə",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "success": "Zabit uğurla əlavə olundu!",
+      "error": "Zabit əlavə edilərkən xəta baş verdi."
+    },
+    "edit": {
+      "title": "Zabiti Redaktə Et",
+      "name": "Ad",
+      "surname": "Soyad",
+      "posotion": "Vəzifə",
+      "submit": "Göndər",
+      "submitting": "Göndərilir...",
+      "success": "Zabit uğurla yeniləndi!",
+      "error": "Zabit yenilənərkən xəta baş verdi."
     }
   },
 
@@ -506,7 +555,7 @@
 
   "validations": {
     "required": {
-      "officeName": "Ofis adı mütləq daxil edilməlidir.",
+      "officeName": "Ofis adı mütləq daxil edilməlidir.",      
       "address": "Ünvan mütləq daxil edilməlidir.",
       "phone": "Telefon nömrəsi mütləq daxil edilməlidir.",
       "departmentName": "Şöbə adı mütləq daxil edilməlidir.",
@@ -518,10 +567,14 @@
       "department": "Şöbə mütləq daxil edilməlidir.",
       "password": "Şifrə mütləq daxil edilməlidir.",
       "passwordConfirmation": "Şifrə təsdiqi mütləqdir.",
-      "doc_id": "Sənəd nömrəsi ən azı 3 simvoldan ibarət olmalıdır."
+      "doc_id": "Sənəd nömrəsi ən azı 3 simvoldan ibarət olmalıdır.",
+      "officerName": "Zabit adı mütləq daxil edilməlidir.",
+      "officerSurname": "Zabit soyadi mütləq daxil edilməlidir.",
+      "officerPosition": "Zabit vəzifəsi mütləq daxil edilməlidir."
     },
     "minLength": {
       "officeName": "Ofis adı ən azı 3 simvoldan ibarət olmalıdır.",
+      "officerName": "Zabit adı ən azı 3 simvoldan ibarət olmalıdır.",
       "address": "Ünvan ən azı 5 simvoldan ibarət olmalıdır.",
       "departmentName": "Şöbə adı ən azı 3 simvoldan ibarət olmalıdır.",
       "name": "Ad ən azı 3 simvoldan ibarət olmalıdır.",
