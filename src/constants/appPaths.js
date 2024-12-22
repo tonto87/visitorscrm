@@ -36,11 +36,6 @@ export const AppPaths = {
     complaintspage: "/visitors/complaints/:id",
   },
 
-  persona: {
-    add: "/persona/add",
-    all: "/persona",
-  },
-
   errors: {
     notfound: "/404",
     forbidden: "/403",

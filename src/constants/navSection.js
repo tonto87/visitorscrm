@@ -4,7 +4,6 @@ import {
   FaChartBar,
   FaUser,
   FaUsers,
-  FaUserTimes,
 } from "react-icons/fa";
 import { AppPaths } from "./appPaths";
 
@@ -40,14 +39,6 @@ const sections = [
           { label: "navigation.all", path: AppPaths.visitors.all },
           { label: "navigation.add", path: AppPaths.visitors.add },
           { label: "navigation.report", path: AppPaths.visitors.complaint },
-        ],
-      },
-      {
-        title: "navigation.personaNonGrata",
-        icon: <FaUserTimes />,
-        items: [
-          { label: "navigation.all", path: AppPaths.persona.all },
-          { label: "navigation.add", path: AppPaths.persona.add },
         ],
       },
     ],

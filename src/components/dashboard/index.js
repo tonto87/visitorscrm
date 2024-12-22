@@ -1,133 +1,159 @@
 import React from "react";
-import { Button, Container } from "react-bootstrap";
-import Table from "react-bootstrap/Table";
-import { useSelector } from "react-redux";
+import { Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./dashboardStyle.scss";
 import { AppPaths } from "../../constants/appPaths";
+import DataTable from "../../modules/DataTable";
+import { useFetchOffices } from "../../hooks/useOffices";
+import { useFetchDepartments } from "../../hooks/useDepartments";
+import { useFetchVisitors } from "../../hooks/useVisitors";
+import { useFetchUsers } from "../../hooks/useUser";
+import LoadingTable from "../../modules/Loading/Table";
+import { isAdmin } from "../../helpers/userHelpers";
 
 const Dashboard = () => {
-  const { data: offices } = useSelector((state) => state.offices);
-  const departments = useSelector(
-    (state) => state.departments.departmentsData || [],
-  );
-  const visitors = useSelector((state) => state.visitors);
+  const enabled = isAdmin();
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const { data: officeData, isLoading: isOfficesLoading } =
+    useFetchOffices(enabled);
+  const offices = officeData?.data || [];
 
-  const handleViewAllOffices = () => navigate(AppPaths.offices.all);
-  const handleViewAllDepartments = () => navigate(AppPaths.departments.all);
+  const { data: departmentsData, isLoading: isDepartmentsLoading } =
+    useFetchDepartments(enabled);
+  const departments = departmentsData?.data || [];
 
-  const handleViewAllVisitors = () => navigate(AppPaths.visitors.all);
+  const { data: visitorsData, isLoading: isVisitorsLoading } =
+    useFetchVisitors();
+  const visitors = visitorsData?.data || [];
+
+  const { data: usersData, isLoading: isUsersLoading } = useFetchUsers(enabled);
+  const users = usersData?.data || [];
+
+  if (
+    isOfficesLoading ||
+    isDepartmentsLoading ||
+    isVisitorsLoading ||
+    isUsersLoading
+  ) {
+    return <LoadingTable />;
+  }
+
+  const sortedOffices = offices.sort((a, b) => b.id - a.id).slice(-3);
+  const sortedDepartments = departments.sort((a, b) => b.id - a.id).slice(-3);
+  const sortedVisitors = visitors.sort((a, b) => b.id - a.id).slice(-3);
+  const sortedUsers = users.sort((a, b) => b.id - a.id).slice(-3);
+
+  const handleViewAll = (path) => navigate(path);
 
   return (
     <Container fluid>
-      <div className="visitors">
-        <h4>Visitors Overview</h4>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Address</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.isArray(visitors) && visitors.length > 0 ? (
-              visitors.slice(-3).map((visitor, index) => (
-                <tr key={visitor.id}>
-                  <td>{visitors.length - 3 + index + 1}</td>
-                  <td>{visitor.name}</td>
-                  <td>{visitor.phone}</td>
-                  <td>{visitor.email}</td>
-                  <td>{visitor.address}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5">No visitors available</td>
-              </tr>
-            )}
-          </tbody>
-        </Table>
-        <div className="text-center">
-          <Button type="button" onClick={handleViewAllVisitors}>
-            Open Full List
-          </Button>
-        </div>
+      <div className="w-100 d-flex mb-4 justify-content-end">
+        <Button
+          variant="success"
+          onClick={() => navigate(AppPaths.visitors.add)}
+        >
+          {t("dashboard.actions.addVisitor")}
+        </Button>
       </div>
-      <hr />
-      <div className="offices">
-        <h4>Offices Overview</h4>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Office Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.isArray(offices) && offices.length > 0 ? (
-              offices.slice(-3).map((office, index) => (
-                <tr key={office.id}>
-                  <td>{offices.length - 3 + index + 1}</td>
-                  <td>{office.name}</td>
-                  <td>{office.address}</td>
-                  <td>{office.phone}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4">No offices available</td>
-              </tr>
-            )}
-          </tbody>
-        </Table>
-        <div className="text-center">
-          <Button type=" button" onClick={handleViewAllOffices}>
-            Open Full List
-          </Button>
-        </div>
-      </div>
-      <hr />
-      <div className="departments">
-        <h4>Departments Overview</h4>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Department Name</th>
-              <th>Phone</th>
-              <th>Office</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.isArray(departments) && departments.length > 0 ? (
-              departments.slice(-3).map((department, index) => (
-                <tr key={department.id}>
-                  <td>{departments.length - 3 + index + 1}</td>
-                  <td>{department.name}</td>
-                  <td>{department.phone}</td>
-                  <td>{department.office}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4">No departments available</td>
-              </tr>
-            )}
-          </tbody>
-        </Table>
-        <div className="text-center">
-          <Button type="button" onClick={handleViewAllDepartments}>
-            Open Full List
-          </Button>
-        </div>
-      </div>
+      <Section
+        title={t("dashboard.sections.visitors.title")}
+        data={sortedVisitors}
+        fields={["doc_id", "name", "phone", "email"]}
+        headers={[
+          t("dashboard.sections.visitors.headers.doc_id"),
+          t("dashboard.sections.visitors.headers.name"),
+          t("dashboard.sections.visitors.headers.phone"),
+          t("dashboard.sections.visitors.headers.email"),
+        ]}
+        noDataMessage={t("dashboard.sections.visitors.noData")}
+        onViewAll={() => handleViewAll(AppPaths.visitors.all)}
+      />
+
+      <Section
+        enabled={enabled}
+        title={t("dashboard.sections.offices.title")}
+        data={sortedOffices}
+        fields={["name", "address", "phone"]}
+        headers={[
+          t("dashboard.sections.offices.headers.name"),
+          t("dashboard.sections.offices.headers.address"),
+          t("dashboard.sections.offices.headers.phone"),
+        ]}
+        noDataMessage={t("dashboard.sections.offices.noData")}
+        onViewAll={() => handleViewAll(AppPaths.offices.all)}
+      />
+
+      <Section
+        enabled={enabled}
+        title={t("dashboard.sections.departments.title")}
+        data={sortedDepartments}
+        fields={["name", "phone", "office"]}
+        headers={[
+          t("dashboard.sections.departments.headers.name"),
+          t("dashboard.sections.departments.headers.phone"),
+          t("dashboard.sections.departments.headers.office"),
+        ]}
+        noDataMessage={t("dashboard.sections.departments.noData")}
+        onViewAll={() => handleViewAll(AppPaths.departments.all)}
+      />
+
+      <Section
+        enabled={enabled}
+        title={t("dashboard.sections.users.title")}
+        data={sortedUsers}
+        fields={["name", "email", "role", "office", "department"]}
+        headers={[
+          t("dashboard.sections.users.headers.name"),
+          t("dashboard.sections.users.headers.email"),
+          t("dashboard.sections.users.headers.role"),
+          t("dashboard.sections.departments.headers.office"),
+          t("dashboard.sections.users.headers.department"),
+        ]}
+        noDataMessage={t("dashboard.sections.users.noData")}
+        onViewAll={() => handleViewAll(AppPaths.users.all)}
+      />
     </Container>
+  );
+};
+
+const Section = ({
+  title,
+  data,
+  headers,
+  fields,
+  noDataMessage,
+  onViewAll,
+  enabled = true,
+}) => {
+  const { t } = useTranslation();
+
+  if (!enabled) {
+    return <></>;
+  }
+
+  const items = data.map((item) => ({
+    ...fields.reduce((acc, field) => {
+      acc[field] = item[field];
+      return acc;
+    }, {}),
+  }));
+
+  return (
+    <div className="dashboard-section">
+      <div className="section-header">
+        <h4>{title}</h4>
+        <Button variant="success" onClick={onViewAll}>
+          {t("dashboard.actions.openFullList")}
+        </Button>
+      </div>
+      <DataTable
+        headItems={headers}
+        items={items}
+        noDataMessage={noDataMessage}
+      />
+    </div>
   );
 };
 

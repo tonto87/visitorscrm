@@ -10,7 +10,7 @@ import OfficerAdd from "./components/Pages/Officers/OfficerAdd";
 import OfficerAll from "./components/Pages/Officers/OfficerAll";
 import OfficerEdit from "./components/Pages/Officers/OfficerEdit";
 
-import Dashboard from "./components/dashboard/dashboard";
+import Dashboard from "./components/dashboard";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/header";
 
@@ -21,9 +21,6 @@ import OfficeEdit from "./components/Pages/Offices/OfficeEdit";
 import DepartmentEdit from "./components/Pages/Departments/DepartmentEdit";
 import DepartmentsAdd from "./components/Pages/Departments/DepartmentsAdd";
 import DepartmentsAll from "./components/Pages/Departments/DepartmentsAll";
-
-import PersonaAdd from "./components/Pages/Visitors/Persona/PersonaAdd";
-import PersonaAll from "./components/Pages/Visitors/Persona/PersonaAll";
 
 import VisitorAdd from "./components/Pages/Visitors/VisitorsAdd";
 import VisitorAll from "./components/Pages/Visitors/VisitorsAll";
@@ -94,14 +91,6 @@ function Main() {
             <Route
               path={AppPaths.visitors.complaintspage}
               element={<ComplaintsPage />}
-            />
-            <Route
-              path={AppPaths.persona.add}
-              element={<ProtectedRoute element={<PersonaAdd />} />}
-            />
-            <Route
-              path={AppPaths.persona.all}
-              element={<ProtectedRoute element={<PersonaAll />} />}
             />
 
             <Route
