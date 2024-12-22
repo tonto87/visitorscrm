@@ -10,7 +10,6 @@ import {
 import Breadcrumb from "../Breadcrumb";
 import Avatar from "../../../modules/Avatar";
 import ReportModal from "./Complaints/VisitorsModal/ReportModal";
-import VisitorBlockButton from "./Persona/VisitorBlockButton";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import LoadingForm from "../../../modules/Loading/Form";
@@ -118,10 +117,6 @@ const VisitorsView = () => {
             </p>
           </div>
           <div className="visitor-view-btns">
-            <VisitorBlockButton
-              isBlocked={visitor.is_blocked}
-              visitor={visitor}
-            />
             <ReportModal
               description={description}
               setDescription={setDescription}

@@ -98,7 +98,7 @@
           "department": "Şöbə"
         },
         "noData": "İstifadəçi mövcud deyil"
-      }, 
+      },
       "officers": {
         "title": "Zabitlər Baxışı",
         "headers": {
@@ -406,38 +406,6 @@
     }
   },
 
-  "persona": {
-    "all": {
-      "add": "Persona Non Grata Əlavə Et",
-      "unblock": "Blokdan Çıxar",
-      "searchPlaceholder": "Ad, Fin və ya Telefon axtar",
-      "name": "Ad",
-      "photo": "Şəkil",
-      "docType": "Sənəd Növü",
-      "doc_id": "Fin",
-      "phone": "Telefon",
-      "email": "E-poçt",
-      "actions": "Əməliyyatlar"
-    },
-    "add": {
-      "title": "Persona Non Grata Əlavə Et",
-      "name": "Ad",
-      "photo": "Şəkil",
-      "docType": "Sənəd Növü",
-      "doc_id": "Fin",
-      "phone": "Telefon",
-      "email": "E-poçt",
-      "address": "Ünvan",
-      "description": "Təsvir",
-      "submit": "Göndər",
-      "submitting": "Göndərilir...",
-      "success": "Persona Non Grata uğurla əlavə olundu!",
-      "error": "Persona Non Grata əlavə edilərkən xəta baş verdi.",
-      "actions": "Əməliyyatlar",
-      "search_placeholder": "Ad, Fin və ya Telefon axtar"
-    }
-  },
-
   "complaints": {
     "all": {
       "title": "Şikayətlər",
@@ -555,7 +523,7 @@
 
   "validations": {
     "required": {
-      "officeName": "Ofis adı mütləq daxil edilməlidir.",      
+      "officeName": "Ofis adı mütləq daxil edilməlidir.",
       "address": "Ünvan mütləq daxil edilməlidir.",
       "phone": "Telefon nömrəsi mütləq daxil edilməlidir.",
       "departmentName": "Şöbə adı mütləq daxil edilməlidir.",

@@ -2,11 +2,9 @@ import { Formik, Form as FormikForm, ErrorMessage } from "formik";
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AppPaths } from "../../../constants/appPaths";
-import { editVisitor } from "../../../store/reducers/visitorReducer";
 import Breadcrumb from "../Breadcrumb";
 
 import "./style.scss";
@@ -36,14 +34,13 @@ const VisitorsEdit = () => {
 
   const { mutateAsync } = useUpdateVisitor();
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const formattedVisitTime = format(
         new Date(values.visit_time),
-        "yyyy-MM-dd HH:mm",
+        "yyyy-MM-dd HH:mm"
       );
 
       await mutateAsync({
@@ -51,7 +48,6 @@ const VisitorsEdit = () => {
         visitor: { ...values, items },
         visit_time: formattedVisitTime,
       });
-      dispatch(editVisitor({ id: visitor.id, data: values }));
       setSubmitting(false);
       toast.success(t("visitors.edit.success"));
       navigate(AppPaths.visitors.view.replace(":id", visitor.id));
@@ -104,7 +100,7 @@ const VisitorsEdit = () => {
           address: visitor.address || "",
           visit_time: format(
             new Date(visitor.visit_time * 1000),
-            "yyyy-MM-dd HH:mm",
+            "yyyy-MM-dd HH:mm"
           ),
           avatar: visitor.avatar,
         }}
