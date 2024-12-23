@@ -79,7 +79,7 @@ export const OfficerValidationSchema = (t) =>
       .trim()
       .min(3, t("validations.minLength.officerSurname"))
       .required(t("validations.required.officerSurname")),
-    positon: Yup.string()
+    position: Yup.string()
       .trim()
       .min(3, t("validations.minLength.officerPosition"))
       .required(t("validations.required.officerPosition")),

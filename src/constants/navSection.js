@@ -2,6 +2,7 @@ import React from "react";
 import {
   FaBuilding,
   FaChartBar,
+  FaFileAlt,
   FaUser,
   FaUsers,
 } from "react-icons/fa";
@@ -60,6 +61,18 @@ const sections = [
         items: [
           { label: "navigation.all", path: AppPaths.officers.all },
           { label: "navigation.add", path: AppPaths.officers.add },
+        ],
+      },
+    ],
+  },
+  {
+    title: "navigation.reports",
+    departments: [
+      {
+        title: "navigation.reports",
+        icon: <FaFileAlt />,
+        items: [
+          { label: "navigation.reports", path: AppPaths.reports.reports },
         ],
       },
     ],

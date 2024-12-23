@@ -50,33 +50,33 @@ const Header = ({ isCollapsedSideBar, isSidebarHidden }) => {
     navigate(AppPaths.login);
   };
 
-  const handleDownload = async () => {
-    try {
-      const resp = await fetchReports(); // Fetch the data (which should include the file content, ideally as a blob or binary string)
-      const blob = new Blob([resp], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      });
-      console.log(blob.size, blob.type);
+  // const handleDownload = async () => {
+  //   try {
+  //     const resp = await fetchReports(); // Fetch the data (which should include the file content, ideally as a blob or binary string)
+  //     const blob = new Blob([resp], {
+  //       type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  //     });
+  //     console.log(blob.size, blob.type);
 
-      const filename = "reports.xlsx";
+  //     const filename = "reports.xlsx";
 
-      // Create a URL from the Blob
-      const url = URL.createObjectURL(blob);
+  //     // Create a URL from the Blob
+  //     const url = URL.createObjectURL(blob);
 
-      // Create an anchor tag and trigger download
-      const downloadLink = document.createElement("a");
-      downloadLink.href = url;
-      downloadLink.download = filename;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
+  //     // Create an anchor tag and trigger download
+  //     const downloadLink = document.createElement("a");
+  //     downloadLink.href = url;
+  //     downloadLink.download = filename;
+  //     document.body.appendChild(downloadLink);
+  //     downloadLink.click();
 
-      // Cleanup
-      URL.revokeObjectURL(url);
-      document.body.removeChild(downloadLink);
-    } catch (error) {
-      console.error("Error downloading the file:", error);
-    }
-  };
+  //     // Cleanup
+  //     URL.revokeObjectURL(url);
+  //     document.body.removeChild(downloadLink);
+  //   } catch (error) {
+  //     console.error("Error downloading the file:", error);
+  //   }
+  // };
 
   return (
     <div
@@ -86,9 +86,9 @@ const Header = ({ isCollapsedSideBar, isSidebarHidden }) => {
       <Navbar className="bg-body-tertiary">
         <Container fluid>
           <Navbar.Brand href={AppPaths.dashboard}>Access Control</Navbar.Brand>
-          <Button onClick={handleDownload} variant="primary">
+          {/* <Button onClick={handleDownload} variant="primary">
             Download
-          </Button>
+          </Button> */}
           <Navbar.Toggle />
 
           <Navbar.Collapse className="justify-content-end">

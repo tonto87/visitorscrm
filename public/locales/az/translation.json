@@ -16,7 +16,6 @@
     "confirm": "Təsdiq et",
     "delete": "Sil"
   },
-
   "navigation": {
     "dashboard": "İdarəetmə Paneli",
     "officesDepartments": "Ofislər və Şöbələr",
@@ -30,9 +29,9 @@
     "permissions": "İcazələr",
     "all": "Hamısı",
     "add": "Əlavə et",
-    "report": "Şikayət"
+    "report": "Şikayət",
+    "reports": "Hesabat"
   },
-
   "breadcrumbs": {
     "dashboard": "İdarəetmə Paneli",
     "users": "İstifadəçilər",
@@ -58,7 +57,6 @@
     "personaAll": "Persona Non Grata Listi",
     "complaints": "Şikayətlər"
   },
-
   "dashboard": {
     "sections": {
       "visitors": {
@@ -114,7 +112,6 @@
       "addVisitor": "Ziyarətçi Əlavə Et"
     }
   },
-
   "user": {
     "all": {
       "title": "İstifadəçilər",
@@ -224,7 +221,6 @@
       "error": "Zabit yenilənərkən xəta baş verdi."
     }
   },
-
   "visitors": {
     "all": {
       "title": "Ziyarətçilər",
@@ -273,7 +269,6 @@
       "photo": "Şəkil",
       "docType": "Sənəd Növü",
       "doc_id": "Fin",
-
       "phone": "Telefon",
       "email": "E-poçt",
       "submit": "Göndər",
@@ -283,7 +278,6 @@
       "addItem": "Əşyaları Əlavə Et",
       "itemName": "Əşya Adı",
       "fin": "FIN",
-
       "itemDescription": "Əşya Təsviri",
       "visitTime": "Ziyarət Vaxtı",
       "addPhoto": "Səkil əlavə et",
@@ -326,7 +320,6 @@
       "blocked": "Persona Non Grata"
     }
   },
-
   "office": {
     "all": {
       "title": "Ofislər",
@@ -363,7 +356,6 @@
       "error": "Ofis yenilənərkən xəta baş verdi."
     }
   },
-
   "department": {
     "add": {
       "title": "Şöbə Əlavə Et",
@@ -405,7 +397,6 @@
       "error": "Şöbə yenilənərkən xəta baş verdi."
     }
   },
-
   "complaints": {
     "all": {
       "title": "Şikayətlər",
@@ -455,7 +446,6 @@
       "error": "Şikayət göndərilmədi."
     }
   },
-
   "login": {
     "welcome": "Tətbiqimizə xoş gəlmisiniz!",
     "loginWithEmail": "E-poçt və ya İstifadəçi Adı ilə daxil olun",
@@ -492,7 +482,6 @@
     },
     "backToLogin": "Geri"
   },
-
   "error": {
     "forbidden": {
       "title": "403",
@@ -513,14 +502,12 @@
       "goHome": "Ana səhifəyə qayıt"
     }
   },
-
   "webcam": {
     "capturePhoto": "Səkil Çək",
     "reset": "Yenilə",
     "close": "Bağla",
     "confirm": "Qəbul et"
   },
-
   "validations": {
     "required": {
       "officeName": "Ofis adı mütləq daxil edilməlidir.",
@@ -558,7 +545,6 @@
       "password": "Şifrələr uyğun gəlməlidir."
     }
   },
-
   "visitorBlockModal": {
     "title": "Ziyarətçi Blokla",
     "success": "Ziyarətçi uğurla bloklanmışdır.",
@@ -570,7 +556,6 @@
     "unblockSuccess": "Ziyarətçi uğurla blokdan çıxarıldı.",
     "unblockError": "Ziyarətçini blokdan çıxarmaq alınmadı."
   },
-
   "noDataFound": "Məlumat tapılmadı",
   "noComplaintsFound": "Heç bir Şikayət tapilmadi",
   "loading": "Yüklənir...",

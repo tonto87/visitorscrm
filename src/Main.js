@@ -34,6 +34,7 @@ import NotFound from "./components/Pages/Errors/404Error";
 
 import Profile from "./components/Pages/Profile/Profie";
 import { isAdmin } from "@helpers/userHelpers";
+import Reports from "@components/Pages/Reports/Reports";
 
 function Main() {
   const [isCollapsedSideBar, setIsCollapsedSideBar] = useState(false);
@@ -117,6 +118,10 @@ function Main() {
             <Route
               path={AppPaths.officers.edit}
               element={<ProtectedRoute element={<OfficerEdit />} />}
+            />
+            <Route
+              path={AppPaths.reports}
+              element={<ProtectedRoute element={<Reports />} />}
             />
 
             <Route path={AppPaths.profile} element={<Profile />} />

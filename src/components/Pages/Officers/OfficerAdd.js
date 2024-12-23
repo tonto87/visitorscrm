@@ -19,28 +19,13 @@ const OfficerAdd = () => {
   const { t } = useTranslation();
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    const uniqueId = Date.now().toString();
-    const newOfficer = { ...values, id: uniqueId };
-
-    const existingOfficer = officers.find(
-      (officer) =>
-        officer.name === newOfficer.name &&
-        officer.surname === newOfficer.surname,
-    );
-
-    if (existingOfficer) {
-      setSubmitting(false);
-      return toast.error(t("officer.add.officerExists"));
-    }
-
     try {
-      await mutateAsync(newOfficer);
+      await mutateAsync(values);
       resetForm();
       toast.success(t("officer.add.success"));
     } catch (error) {
-      toast.error("officer.add.error");
+      toast.error(t("officer.add.error"));
     }
-
     setSubmitting(false);
   };
 
@@ -63,27 +48,29 @@ const OfficerAdd = () => {
         validationSchema={OfficerValidationSchema(t)}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
-          <Form className="add-form">
-            <div className="form-wrapper">
-              <FormField label={t("officer.add.name")} name="name" />
-              <FormField label={t("officer.add.surname")} name="surname" />
-              <FormField label={t("officer.add.position")} name="position" />
-            </div>
-            <div className="form-footer">
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                variant="primary"
-                className="btn-primary"
-              >
-                {isSubmitting
-                  ? t("officer.add.submitting")
-                  : t("officer.add.submit")}
-              </Button>
-            </div>
-          </Form>
-        )}
+        {({ isSubmitting }) => {
+          return (
+            <Form className="add-form">
+              <div className="form-wrapper">
+                <FormField label={t("officer.add.name")} name="name" />
+                <FormField label={t("officer.add.surname")} name="surname" />
+                <FormField label={t("officer.add.position")} name="position" />
+              </div>
+              <div className="form-footer">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  variant="primary"
+                  className="btn-primary"
+                >
+                  {isSubmitting
+                    ? t("officer.add.submitting")
+                    : t("officer.add.submit")}
+                </Button>
+              </div>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );

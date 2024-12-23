@@ -31,7 +31,7 @@ export const useFetchOfficerById = (id) => {
 export const useAddOfficer = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (officer) => addOfficer(officer),
+    mutationFn: addOfficer,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["officers"] });
     },

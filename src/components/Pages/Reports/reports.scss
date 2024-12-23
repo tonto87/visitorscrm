@@ -1,0 +1,64 @@
+// styles.scss
+
+// Variables for reusable colors
+$primary-color: #007bff;
+$primary-color-hover: #0056b3;
+$disabled-color: #d6d6d6;
+$loading-color: #28a745;
+$text-color: #333;
+$secondary-text-color: #555;
+$background-color: #f4f4f4;
+
+.report-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $background-color;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+
+  .report-title {
+    font-size: 2rem;
+    color: $text-color;
+    margin-bottom: 20px;
+  }
+
+  .report-description {
+    font-size: 1rem;
+    color: $secondary-text-color;
+    margin-bottom: 30px;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .download-button-container {
+    display: flex;
+    justify-content: center;
+
+    .btn-download {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $primary-color-hover;
+      }
+
+      &:disabled {
+        background-color: $disabled-color;
+        cursor: not-allowed;
+      }
+
+      &.loading {
+        background-color: $loading-color;
+      }
+    }
+  }
+}

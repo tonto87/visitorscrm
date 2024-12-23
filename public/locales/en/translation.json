@@ -28,7 +28,8 @@
     "users": "Users",
     "permissions": "Permissions",
     "all": "All",
-    "report": "Complaint"
+    "report": "Complaint",
+    "reports": "Reports"
   },
   "breadcrumbs": {
     "dashboard": "Dashboard",
