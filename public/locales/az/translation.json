@@ -482,6 +482,16 @@
     },
     "backToLogin": "Geri"
   },
+  "reports": {
+    "download_report": "Hesabatı Yüklə",
+    "download_description": "Ən son hesabatı Excel formatında (.xlsx) yükləmək üçün aşağıdakı düyməni basın.",
+    "downloading": "Yüklənir...",
+    "toast": {
+      "downloadError": "Hesabat yüklənmədi.",
+      "downloadSuccess": "Hesabat uğurla yükləndi.",
+      "fetchError": "Hesabat yüklənmədi. Zəhmət olmasa, yenidən cəhd edin."
+    }
+  },
   "error": {
     "forbidden": {
       "title": "403",
