@@ -9,21 +9,21 @@ import { format } from "date-fns";
 import { AppPaths } from "../../../constants/appPaths";
 import Capture from "../../../modules/Capture";
 import Breadcrumb from "../Breadcrumb";
-import { VisitorValidationSchema } from "../InputValidation";
+import { ApplicationValidationSchema } from "../InputValidation";
 import {
-  useAddVisitor,
+  useAddApplication,
   useFetchDocumentTypes,
-} from "../../../hooks/useVisitors";
+} from "../../../hooks/useApplications";
 import LoadingForm from "../../../modules/Loading/Form";
 import FormField from "../FormField";
 import "./style.scss";
 import ItemsTable from "./ItemsTable";
 import { isReception } from "../../../helpers/userHelpers";
 
-const VisitorsAdd = () => {
+const ApplicationsAdd = () => {
   const { t } = useTranslation();
 
-  const { mutateAsync } = useAddVisitor();
+  const { mutateAsync } = useAddApplication();
   const { data: documentTypesData, isLoading: isLoadingDocumentTypes } =
     useFetchDocumentTypes();
   const documentTypes = documentTypesData?.data;
@@ -37,7 +37,7 @@ const VisitorsAdd = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const newFormData = {
-      visitors: [
+      applications: [
         {
           ...values,
           avatar: values.photo,
@@ -52,10 +52,10 @@ const VisitorsAdd = () => {
     try {
       await mutateAsync(newFormData);
       setSubmitting(false);
-      toast.success(t("visitors.add.success"));
-      navigate(AppPaths.visitors.all);
+      toast.success(t("applications.add.success"));
+      navigate(AppPaths.applications.all);
     } catch (error) {
-      toast.error(t("visitors.add.error"));
+      toast.error(t("applications.add.error"));
     }
   };
 
@@ -82,8 +82,11 @@ const VisitorsAdd = () => {
       <Breadcrumb
         paths={[
           { label: t("breadcrumbs.dashboard"), to: AppPaths.dashboard },
-          { label: t("breadcrumbs.visitors"), to: AppPaths.visitors.all },
-          { label: t("breadcrumbs.addVisitor") },
+          {
+            label: t("breadcrumbs.applications"),
+            to: AppPaths.applications.all,
+          },
+          { label: t("breadcrumbs.addApplication") },
         ]}
       />
       <hr className="navigation-underline" />
@@ -99,7 +102,7 @@ const VisitorsAdd = () => {
           visit_time: "",
           visiting_now: isReception() ? 1 : 0,
         }}
-        validationSchema={VisitorValidationSchema(t)}
+        validationSchema={ApplicationValidationSchema(t)}
         onSubmit={handleSubmit}
       >
         {({
@@ -119,7 +122,7 @@ const VisitorsAdd = () => {
                     onConfirm={(imageSrc) =>
                       handleCapture(imageSrc, setFieldValue)
                     }
-                    btnText={t("visitors.add.photo")}
+                    btnText={t("applications.add.photo")}
                   />
                   <ErrorMessage
                     name="photo"
@@ -131,7 +134,7 @@ const VisitorsAdd = () => {
             )}
             <div className="form-wrapper">
               <FormField
-                label={t("visitors.add.docType")}
+                label={t("applications.add.docType")}
                 name="doc_type"
                 as="select"
                 options={Object.entries(documentTypes)?.map(([value, key]) => ({
@@ -140,7 +143,7 @@ const VisitorsAdd = () => {
                 }))}
               />
               <FormField
-                label={t("visitors.add.doc_id")}
+                label={t("applications.add.doc_id")}
                 name="doc_id"
                 type="text"
                 className="form-control"
@@ -154,27 +157,27 @@ const VisitorsAdd = () => {
               />
 
               <FormField
-                label={t("visitors.add.name")}
+                label={t("applications.add.name")}
                 name="name"
                 type="text"
                 className="form-control"
               />
 
               <FormField
-                label={t("visitors.add.phone")}
+                label={t("applications.add.phone")}
                 name="phone"
                 type="text"
                 className="form-control"
               />
 
               <FormField
-                label={t("visitors.add.email")}
+                label={t("applications.add.email")}
                 name="email"
                 type="email"
                 className="form-control"
               />
               <FormField
-                label={t("visitors.add.address")}
+                label={t("applications.add.address")}
                 name="address"
                 type="text"
                 className="form-control"
@@ -183,7 +186,7 @@ const VisitorsAdd = () => {
               {!isReception() && (
                 <div className="form-row  visit-time-input">
                   <FormField
-                    label={t("visitors.add.visitTime")}
+                    label={t("applications.add.visitTime")}
                     name="visit_time"
                     type="datetime-local"
                     className="form-control"
@@ -195,8 +198,8 @@ const VisitorsAdd = () => {
             <div className="form-footer">
               <Button variant="success" type="submit" disabled={isSubmitting}>
                 {isSubmitting
-                  ? t("visitors.add.submitting")
-                  : t("visitors.add.submit")}
+                  ? t("applications.add.submitting")
+                  : t("applications.add.submit")}
               </Button>
               <Button
                 variant="danger"
@@ -206,7 +209,7 @@ const VisitorsAdd = () => {
                   setItems([]);
                 }}
               >
-                {t("visitors.add.reset")}
+                {t("applications.add.reset")}
               </Button>
             </div>
           </FormikForm>
@@ -216,4 +219,4 @@ const VisitorsAdd = () => {
   );
 };
 
-export default VisitorsAdd;
+export default ApplicationsAdd;

@@ -27,7 +27,7 @@ export const DepartmentValidationSchema = (t) =>
     office_id: Yup.string().required(t("validations.required.officeSelection")),
   });
 
-export const VisitorValidationSchema = (t) =>
+export const ApplicationValidationSchema = (t) =>
   Yup.object({
     name: Yup.string()
       .min(3, t("validations.minLength.name"))

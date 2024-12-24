@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Avatar from "../Avatar";
 import "./UserSuggestion.scss";
-import { useInfoByDoc } from "../../hooks/useVisitors";
+import { useInfoByDoc } from "../../hooks/useApplications";
 import { useDebounce } from "../../hooks/useDebounce";
 
 const UserSuggestion = ({ docType, docId, onSelect, show }) => {

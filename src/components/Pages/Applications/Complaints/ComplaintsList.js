@@ -24,7 +24,7 @@ const ComplaintsList = ({ complaints, complaintsLoading }) => {
   };
 
   return (
-    <div className="visitor-complaints">
+    <div className="application-complaints">
       {complaintsLoading ? (
         <div className="spinner-container">
           <Spinner animation="border" role="status">

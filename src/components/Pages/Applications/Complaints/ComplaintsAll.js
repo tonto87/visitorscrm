@@ -17,7 +17,7 @@ const ComplaintsAll = () => {
 
   const handleView = ({ id }) => {
     const complaint = complaints.find((c) => c.id === id);
-    navigate(`/visitors/view/${complaint.visitor_id}`);
+    navigate(`/applications/view/${complaint.application_id}`);
   };
 
   if (isLoading) return <LoadingTable />;
@@ -31,7 +31,7 @@ const ComplaintsAll = () => {
 
   const items = complaints?.map((complaint, index) => ({
     id: complaint.id,
-    name: complaint.visitor,
+    name: complaint.application,
     date: new Date(complaint.created_at).toLocaleDateString(),
     description: complaint.description,
   }));

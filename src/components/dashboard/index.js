@@ -7,7 +7,7 @@ import { AppPaths } from "../../constants/appPaths";
 import DataTable from "../../modules/DataTable";
 import { useFetchOffices } from "../../hooks/useOffices";
 import { useFetchDepartments } from "../../hooks/useDepartments";
-import { useFetchVisitors } from "../../hooks/useVisitors";
+import { useFetchApplications } from "../../hooks/useApplications";
 import { useFetchUsers } from "../../hooks/useUser";
 import LoadingTable from "../../modules/Loading/Table";
 import { isAdmin } from "../../helpers/userHelpers";
@@ -24,9 +24,9 @@ const Dashboard = () => {
     useFetchDepartments(enabled);
   const departments = departmentsData?.data || [];
 
-  const { data: visitorsData, isLoading: isVisitorsLoading } =
-    useFetchVisitors();
-  const visitors = visitorsData?.data || [];
+  const { data: applicationsData, isLoading: isApplicationsLoading } =
+    useFetchApplications();
+  const applications = applicationsData?.data || [];
 
   const { data: usersData, isLoading: isUsersLoading } = useFetchUsers(enabled);
   const users = usersData?.data || [];
@@ -34,7 +34,7 @@ const Dashboard = () => {
   if (
     isOfficesLoading ||
     isDepartmentsLoading ||
-    isVisitorsLoading ||
+    isApplicationsLoading ||
     isUsersLoading
   ) {
     return <LoadingTable />;
@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   const sortedOffices = offices.sort((a, b) => b.id - a.id).slice(-3);
   const sortedDepartments = departments.sort((a, b) => b.id - a.id).slice(-3);
-  const sortedVisitors = visitors.sort((a, b) => b.id - a.id).slice(-3);
+  const sortedApplications = applications.sort((a, b) => b.id - a.id).slice(-3);
   const sortedUsers = users.sort((a, b) => b.id - a.id).slice(-3);
 
   const handleViewAll = (path) => navigate(path);
@@ -52,23 +52,23 @@ const Dashboard = () => {
       <div className="w-100 d-flex mb-4 justify-content-end">
         <Button
           variant="success"
-          onClick={() => navigate(AppPaths.visitors.add)}
+          onClick={() => navigate(AppPaths.applications.add)}
         >
-          {t("dashboard.actions.addVisitor")}
+          {t("navigation.add")}
         </Button>
       </div>
       <Section
-        title={t("dashboard.sections.visitors.title")}
-        data={sortedVisitors}
+        title={t("dashboard.sections.applications.title")}
+        data={sortedApplications}
         fields={["doc_id", "name", "phone", "email"]}
         headers={[
-          t("dashboard.sections.visitors.headers.doc_id"),
-          t("dashboard.sections.visitors.headers.name"),
-          t("dashboard.sections.visitors.headers.phone"),
-          t("dashboard.sections.visitors.headers.email"),
+          t("dashboard.sections.applications.headers.doc_id"),
+          t("dashboard.sections.applications.headers.name"),
+          t("dashboard.sections.applications.headers.phone"),
+          t("dashboard.sections.applications.headers.email"),
         ]}
-        noDataMessage={t("dashboard.sections.visitors.noData")}
-        onViewAll={() => handleViewAll(AppPaths.visitors.all)}
+        noDataMessage={t("dashboard.sections.Applications.noData")}
+        onViewAll={() => handleViewAll(AppPaths.applications.all)}
       />
 
       <Section

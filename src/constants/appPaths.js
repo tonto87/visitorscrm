@@ -27,13 +27,13 @@ export const AppPaths = {
     edit: "/officers/edit/:id",
   },
 
-  visitors: {
-    add: "/visitors/add",
-    all: "/visitors",
-    complaint: "/visitors/report",
-    edit: "/visitors/edit/:id",
-    view: "/visitors/view/:id",
-    complaintspage: "/visitors/complaints/:id",
+  applications: {
+    add: "/applications/add",
+    all: "/applications",
+    complaint: "/applications/report",
+    edit: "/applications/edit/:id",
+    view: "/applications/view/:id",
+    complaintspage: "/applications/complaints/:id",
   },
 
   errors: {

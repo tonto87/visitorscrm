@@ -2,7 +2,7 @@ import React from "react";
 import { Modal as CoreModal, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-const VisitorConfirmationModal = ({
+const ApplicationConfirmationModal = ({
   show,
   onClose,
   onConfirm,
@@ -37,4 +37,4 @@ const VisitorConfirmationModal = ({
   );
 };
 
-export default VisitorConfirmationModal;
+export default ApplicationConfirmationModal;

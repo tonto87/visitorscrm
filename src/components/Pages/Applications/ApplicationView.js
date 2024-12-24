@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  useFetchVisitorComplaints,
-  useFetchVisitorById,
+  useFetchApplicationComplaints,
+  useFetchApplicationById,
   useStartVisit,
   useEndVisit,
-} from "../../../hooks/useVisitors";
+} from "../../../hooks/useApplications";
 import Breadcrumb from "../Breadcrumb";
 import Avatar from "../../../modules/Avatar";
-import ReportModal from "./Complaints/VisitorsModal/ReportModal";
+import ReportModal from "./Complaints/ApplicationsModule/ReportModal";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import LoadingForm from "../../../modules/Loading/Form";
@@ -19,46 +19,46 @@ import { FaTimesCircle } from "react-icons/fa";
 import { isAdmin, isReception } from "../../../helpers/userHelpers";
 import { AppPaths } from "../../../constants/appPaths";
 
-const VisitorsView = () => {
+const ApplicationsView = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data: visitorData } = useFetchVisitorById(id);
+  const { data: applicationData } = useFetchApplicationById(id);
   const { mutateAsync: startVisit } = useStartVisit();
   const { mutateAsync: endVisit } = useEndVisit();
 
-  const visitor = visitorData?.data;
-  const { refetch: refetchComplaints } = useFetchVisitorComplaints(id);
+  const application = applicationData?.data;
+  const { refetch: refetchComplaints } = useFetchApplicationComplaints(id);
 
   const [description, setDescription] = useState("");
 
-  if (!visitor) {
+  if (!application) {
     return <LoadingForm />;
   }
 
   const handleStartVisit = async () => {
     try {
-      await startVisit(visitor.id);
-      toast.success(t("visitors.view.startVisitSuccess"));
+      await startVisit(application.id);
+      toast.success(t("applications.view.startVisitSuccess"));
     } catch (error) {
       console.error("Error starting visit:", error);
-      toast.error(t("visitors.view.startVisitError"));
+      toast.error(t("applications.view.startVisitError"));
     }
   };
 
   const handleEndVisit = async () => {
     try {
-      await endVisit(visitor.id);
-      toast.success(t("visitors.view.endVisitSuccess"));
+      await endVisit(application.id);
+      toast.success(t("applications.view.endVisitSuccess"));
     } catch (error) {
       console.error("Error ending visit:", error);
-      toast.error(t("visitors.view.endVisitError"));
+      toast.error(t("applications.view.endVisitError"));
     }
   };
 
   const handleNavigateToComplaints = ({ id }) => {
-    navigate(`/visitors/complaints/${visitor.id}`);
+    navigate(`/applications/complaints/${application.id}`);
   };
 
   return (
@@ -67,74 +67,85 @@ const VisitorsView = () => {
         <Breadcrumb
           paths={[
             { label: t("breadcrumbs.dashboard"), to: AppPaths.dashboard },
-            { label: t("breadcrumbs.visitors"), to: AppPaths.visitors.all },
-            { label: t("breadcrumbs.showVisitor") },
+            {
+              label: t("breadcrumbs.applications"),
+              to: AppPaths.applications.all,
+            },
+            { label: t("breadcrumbs.showapplication") },
           ]}
         />
         {isReception() && (
           <>
-            {!visitor.visit_start_date && (
+            {!application.visit_start_date && (
               <Button onClick={handleStartVisit}>
-                {t("visitors.view.startVisit")}
+                {t("applications.view.startVisit")}
               </Button>
             )}
-            {visitor.visit_start_date && !visitor.visit_end_date && (
+            {application.visit_start_date && !application.visit_end_date && (
               <Button variant="danger" onClick={handleEndVisit}>
-                {t("visitors.view.endVisit")}
+                {t("applications.view.endVisit")}
               </Button>
             )}
           </>
         )}
       </div>
-      <div className="visitor-view">
-        {visitor.is_blocked && (
+      <div className="application-view">
+        {application.is_blocked && (
           <div className="blocked-overlay">
             <FaTimesCircle />
-            <span>{t("visitors.view.blocked")}</span>
+            <span>{t("applications.view.blocked")}</span>
           </div>
         )}
         <div
-          className={`visitor-view-header ${visitor.is_blocked ? "blocked" : ""}`}
+          className={`application-view-header ${application.is_blocked ? "blocked" : ""}`}
         >
-          <div className="visitor-view-photo">
-            <Avatar size="128px" src={visitor.avatar} alt={visitor.name} />
+          <div className="application-view-photo">
+            <Avatar
+              size="128px"
+              src={application.avatar}
+              alt={application.name}
+            />
           </div>
-          <div className="visitor-view-info">
+          <div className="application-view-info">
             <p>
-              <strong>{t("visitors.view.name")}:</strong> {visitor.name}
+              <strong>{t("applications.view.name")}:</strong> {application.name}
             </p>
             <p>
-              <strong>{t("visitors.view.fin")}:</strong> {visitor.doc_id}
+              <strong>{t("applications.view.fin")}:</strong>{" "}
+              {application.doc_id}
             </p>
             <p>
-              <strong>{t("visitors.view.phone")}:</strong> {visitor.phone}
+              <strong>{t("applications.view.phone")}:</strong>{" "}
+              {application.phone}
             </p>
             <p>
-              <strong>{t("visitors.view.email")}:</strong> {visitor.email}
+              <strong>{t("applications.view.email")}:</strong>{" "}
+              {application.email}
             </p>
             <p>
-              <strong>{t("visitors.view.address")}:</strong> {visitor.address}
+              <strong>{t("applications.view.address")}:</strong>{" "}
+              {application.address}
             </p>
           </div>
-          <div className="visitor-view-btns">
+          <div className="application-view-btns">
             <ReportModal
               description={description}
               setDescription={setDescription}
-              id={visitor.id}
+              id={application.id}
               onUpdateComplaints={refetchComplaints}
             />
           </div>
         </div>
-        <div className="visitor-view-footer">
-          {visitor.items.length > 0 && (
+        <div className="application-view-footer">
+          {application.items.length > 0 && (
             <div className="view-cursor">
-              <h4>{t("visitors.view.items")}</h4>
-              <ItemsTable canAdd={false} initialItems={visitor.items} />
+              <h4>{t("applications.view.items")}</h4>
+              <ItemsTable canAdd={false} initialItems={application.items} />
             </div>
           )}
           {isAdmin() && (
             <h4 className="view-cursor" onClick={handleNavigateToComplaints}>
-              {t("visitors.view.complaints")}
+              {t("applications.view.complaints")}
             </h4>
           )}
         </div>
@@ -143,4 +154,4 @@ const VisitorsView = () => {
   );
 };
 
-export default VisitorsView;
+export default ApplicationsView;

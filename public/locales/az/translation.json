@@ -21,7 +21,7 @@
     "officesDepartments": "Ofislər və Şöbələr",
     "offices": "Ofislər",
     "departments": "Şöbələr",
-    "visitors": "Ziyarətçilər",
+    "applications": "Müraciətlər",
     "personaNonGrata": "Persona Non Grata",
     "usersPermissions": "İstifadəçilər və İcazələr",
     "users": "İstifadəçilər",
@@ -49,25 +49,25 @@
     "addDepartment": "Şöbə Əlavə Et",
     "editDepartment": "Şöbəni Redaktə Et",
     "deleteDepartment": "Şöbəni Sil",
-    "visitors": "Ziyarətçilər",
-    "addVisitor": "Ziyarətçi Əlavə Et",
-    "editVisitor": "Ziyarətçini Redaktə Et",
-    "deleteVisitor": "Ziyarətçini Sil",
-    "showVisitor": "Ziyarətçi Məlumatları",
+    "applications": "Müraciətlər",
+    "addapplication": "Müraciət Əlavə Et",
+    "editapplication": "Ziyarətçini Redaktə Et",
+    "deleteapplication": "Ziyarətçini Sil",
+    "showapplication": "Müraciət Məlumatları",
     "personaAll": "Persona Non Grata Listi",
     "complaints": "Şikayətlər"
   },
   "dashboard": {
     "sections": {
-      "visitors": {
-        "title": "Ziyarətçilər Baxışı",
+      "applications": {
+        "title": "Müraciətlər Baxışı",
         "headers": {
           "doc_id": "Fin",
           "name": "Ad",
           "phone": "Telefon",
           "email": "E-poçt"
         },
-        "noData": "Ziyarətçi mövcud deyil"
+        "noData": "Müraciət mövcud deyil"
       },
       "offices": {
         "title": "Ofislər Baxışı",
@@ -109,7 +109,7 @@
     },
     "actions": {
       "openFullList": "Tam Siyahını Aç",
-      "addVisitor": "Ziyarətçi Əlavə Et"
+      "addapplication": "Müraciət Əlavə Et"
     }
   },
   "user": {
@@ -221,10 +221,10 @@
       "error": "Zabit yenilənərkən xəta baş verdi."
     }
   },
-  "visitors": {
+  "applications": {
     "all": {
-      "title": "Ziyarətçilər",
-      "add": "Ziyarətçi Əlavə Et",
+      "title": "Müraciətlər",
+      "add": "Müraciət Əlavə Et",
       "searchPlaceholder": "Ad, Fin və ya Telefon axtar",
       "name": "Ad",
       "photo": "Şəkil",
@@ -237,14 +237,14 @@
       "edit": "Redaktə Et",
       "delete": "Sil",
       "deleteConfirm": "Bu ziyarətçini silmək istədiyinizdən əminsiniz?",
-      "deleteSuccess": "Ziyarətçi uğurla silindi.",
+      "deleteSuccess": "Müraciət uğurla silindi.",
       "deleteError": "Ziyarətçini silmək alınmadı.",
-      "visitTime": "Ziyarət Vaxtı",
-      "visitTimeCount": "Ziyarət müddəti",
+      "visitTime": "Müraciət Vaxtı",
+      "visitTimeCount": "Müraciət müddəti",
       "notStarted": "Başlanmamış"
     },
     "add": {
-      "title": "Ziyarətçi Əlavə Et",
+      "title": "Müraciət Əlavə Et",
       "name": "Ad",
       "photo": "Şəkil",
       "docType": "Sənəd Növü",
@@ -252,16 +252,16 @@
       "phone": "Telefon",
       "email": "E-poçt",
       "address": "Ünvan",
-      "visitTime": "Ziyarət Vaxtı",
-      "visitingNow": "Indi Ziyarət edir",
+      "visitTime": "Müraciət Vaxtı",
+      "visitingNow": "Indi Müraciət edir",
       "addItem": "Əşyaları Əlavə Et",
       "itemName": "Əşya Adı",
       "itemDescription": "Əşya Təsviri",
       "submit": "Göndər",
       "submitting": "Göndərilir...",
       "reset": "Təmizlə",
-      "success": "Ziyarətçi uğurla əlavə olundu!",
-      "error": "Ziyarətçi əlavə edilərkən xəta baş verdi."
+      "success": "Müraciət uğurla əlavə olundu!",
+      "error": "Müraciət əlavə edilərkən xəta baş verdi."
     },
     "edit": {
       "title": "Ziyarətçini Redaktə Et",
@@ -273,19 +273,19 @@
       "email": "E-poçt",
       "submit": "Göndər",
       "submitting": "Göndərilir...",
-      "success": "Ziyarətçi uğurla yeniləndi!",
-      "error": "Ziyarətçi yenilənərkən xəta baş verdi.",
+      "success": "Müraciət uğurla yeniləndi!",
+      "error": "Müraciət yenilənərkən xəta baş verdi.",
       "addItem": "Əşyaları Əlavə Et",
       "itemName": "Əşya Adı",
       "fin": "FIN",
       "itemDescription": "Əşya Təsviri",
-      "visitTime": "Ziyarət Vaxtı",
+      "visitTime": "Müraciət Vaxtı",
       "addPhoto": "Səkil əlavə et",
       "address": "Ünvan",
-      "visitingNow": "Indi Ziyarət edir"
+      "visitingNow": "Indi Müraciət edir"
     },
     "view": {
-      "title": "Ziyarətçi Məlumatları",
+      "title": "Müraciət Məlumatları",
       "name": "Ad",
       "photo": "Şəkil",
       "docType": "Sənəd Növü",
@@ -298,7 +298,7 @@
       "edit": "Redaktə Et",
       "delete": "Sil",
       "deleteConfirm": "Bu ziyarətçini silmək istədiyinizdən əminsiniz?",
-      "deleteSuccess": "Ziyarətçi uğurla silindi.",
+      "deleteSuccess": "Müraciət uğurla silindi.",
       "deleteError": "Ziyarətçini silmək alınmadı.",
       "report": "Şikayət Et",
       "submit": "Göndər",
@@ -314,9 +314,9 @@
       "startVisit": "Ziyarəti Başlat",
       "endVisit": "Ziyarəti Bitir",
       "startVisitError": "Ziyarəti başlatmaq alınmadı.",
-      "startVisitSuccess": "Ziyarət uğurla başladı.",
+      "startVisitSuccess": "Müraciət uğurla başladı.",
       "endVisitError": "Ziyarəti bitirmək alınmadı.",
-      "endVisitSuccess": "Ziyarət uğurla başa çatdı.",
+      "endVisitSuccess": "Müraciət uğurla başa çatdı.",
       "blocked": "Persona Non Grata"
     }
   },
@@ -545,15 +545,15 @@
       "password": "Şifrələr uyğun gəlməlidir."
     }
   },
-  "visitorBlockModal": {
-    "title": "Ziyarətçi Blokla",
-    "success": "Ziyarətçi uğurla bloklanmışdır.",
-    "error": "Ziyarətçi bloklanarkən xəta baş verdi.",
+  "applicationBlockModal": {
+    "title": "Müraciət Blokla",
+    "success": "Müraciət uğurla bloklanmışdır.",
+    "error": "Müraciət bloklanarkən xəta baş verdi.",
     "blockWarning": "Bu ziyarətçini bloklamaq istədiyinizdən əminsiniz?",
     "unblockWarning": "Bu ziyarətçini blokldan cixartmaq istədiyinizdən əminsiniz?",
     "block": "Blokla",
     "unblock": "Blokdan Çıxar",
-    "unblockSuccess": "Ziyarətçi uğurla blokdan çıxarıldı.",
+    "unblockSuccess": "Müraciət uğurla blokdan çıxarıldı.",
     "unblockError": "Ziyarətçini blokdan çıxarmaq alınmadı."
   },
   "noDataFound": "Məlumat tapılmadı",

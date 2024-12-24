@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useFetchVisitorComplaints } from "../../../../hooks/useVisitors";
+import { useFetchApplicationComplaints } from "../../../../hooks/useApplications";
 import ComplaintsList from "./ComplaintsList";
 import { AppPaths } from "../../../../constants/appPaths";
 import { useTranslation } from "react-i18next";
@@ -12,7 +12,7 @@ const ComplaintsPage = (handleToggleComplaints) => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { data: complaints, isLoading: complaintsLoading } =
-    useFetchVisitorComplaints(id);
+    useFetchApplicationComplaints(id);
 
   const complaintsData = complaints?.data || [];
 
@@ -22,11 +22,11 @@ const ComplaintsPage = (handleToggleComplaints) => {
         paths={[
           { label: t("breadcrumbs.dashboard"), to: AppPaths.dashboard },
           {
-            label: t("breadcrumbs.visitors"),
-            to: `${AppPaths.visitors.view.replace("/:id", "")}/${id}`,
+            label: t("breadcrumbs.applications"),
+            to: `${AppPaths.applications.view.replace("/:id", "")}/${id}`,
           },
           {
-            label: t("breadcrumbs.showVisitor"),
+            label: t("breadcrumbs.showApplication"),
           },
         ]}
       />

@@ -22,12 +22,12 @@ import DepartmentEdit from "./components/Pages/Departments/DepartmentEdit";
 import DepartmentsAdd from "./components/Pages/Departments/DepartmentsAdd";
 import DepartmentsAll from "./components/Pages/Departments/DepartmentsAll";
 
-import VisitorAdd from "./components/Pages/Visitors/VisitorsAdd";
-import VisitorAll from "./components/Pages/Visitors/VisitorsAll";
-import VisitorEdit from "./components/Pages/Visitors/VisitorsEdit";
-import ComplaintsAll from "./components/Pages/Visitors/Complaints/ComplaintsAll";
-import ComplaintsPage from "./components/Pages/Visitors/Complaints/ComplaintsPage";
-import VisitorsView from "./components/Pages/Visitors/VisitorsView";
+import ApplicationAdd from "./components/Pages/Applications/ApplicationAdd";
+import ApplicationAll from "./components/Pages/Applications/ApplicationAll";
+import ApplicationEdit from "./components/Pages/Applications/ApplicationEdit";
+import ComplaintsAll from "./components/Pages/Applications/Complaints/ComplaintsAll";
+import ComplaintsPage from "./components/Pages/Applications/Complaints/ComplaintsPage";
+import ApplicationsView from "./components/Pages/Applications/ApplicationView";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./components/Pages/Errors/404Error";
@@ -81,16 +81,28 @@ function Main() {
               path={AppPaths.offices.edit}
               element={<ProtectedRoute element={<OfficeEdit />} />}
             />
-            <Route path={AppPaths.visitors.add} element={<VisitorAdd />} />
-            <Route path={AppPaths.visitors.all} element={<VisitorAll />} />
-            <Route path={AppPaths.visitors.edit} element={<VisitorEdit />} />
-            <Route path={AppPaths.visitors.view} element={<VisitorsView />} />
             <Route
-              path={AppPaths.visitors.complaint}
+              path={AppPaths.applications.add}
+              element={<ApplicationAdd />}
+            />
+            <Route
+              path={AppPaths.applications.all}
+              element={<ApplicationAll />}
+            />
+            <Route
+              path={AppPaths.applications.edit}
+              element={<ApplicationEdit />}
+            />
+            <Route
+              path={AppPaths.applications.view}
+              element={<ApplicationsView />}
+            />
+            <Route
+              path={AppPaths.applications.complaint}
               element={<ProtectedRoute element={<ComplaintsAll />} />}
             />
             <Route
-              path={AppPaths.visitors.complaintspage}
+              path={AppPaths.applications.complaintspage}
               element={<ComplaintsPage />}
             />
 

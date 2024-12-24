@@ -8,12 +8,12 @@ import { AppPaths } from "../../../constants/appPaths";
 import Breadcrumb from "../Breadcrumb";
 
 import "./style.scss";
-import { VisitorValidationSchema } from "../InputValidation";
+import { ApplicationValidationSchema } from "../InputValidation";
 import {
   useFetchDocumentTypes,
-  useFetchVisitorById,
-  useUpdateVisitor,
-} from "../../../hooks/useVisitors";
+  useFetchApplicationById,
+  useUpdateApplication,
+} from "../../../hooks/useApplications";
 import LoadingForm from "../../../modules/Loading/Form";
 import FormField from "../FormField";
 import Capture from "../../../modules/Capture";
@@ -21,18 +21,18 @@ import { format } from "date-fns";
 import ItemsTable from "./ItemsTable";
 import { isReception } from "@helpers/userHelpers";
 
-const VisitorsEdit = () => {
+const ApplicationsEdit = () => {
   const { t } = useTranslation();
   const { id } = useParams();
-  const { data, isLoading } = useFetchVisitorById(id);
+  const { data, isLoading } = useFetchApplicationById(id);
   const [items, setItems] = useState([]);
-  const visitor = data?.data;
+  const application = data?.data;
 
   const { data: documentTypesData, isLoading: isLoadingDocumentTypes } =
     useFetchDocumentTypes();
   const documentTypes = documentTypesData?.data;
 
-  const { mutateAsync } = useUpdateVisitor();
+  const { mutateAsync } = useUpdateApplication();
 
   const navigate = useNavigate();
 
@@ -40,19 +40,19 @@ const VisitorsEdit = () => {
     try {
       const formattedVisitTime = format(
         new Date(values.visit_time),
-        "yyyy-MM-dd HH:mm"
+        "yyyy-MM-dd HH:mm",
       );
 
       await mutateAsync({
-        id: visitor.id,
-        visitor: { ...values, items },
+        id: application.id,
+        application: { ...values, items },
         visit_time: formattedVisitTime,
       });
       setSubmitting(false);
-      toast.success(t("visitors.edit.success"));
-      navigate(AppPaths.visitors.view.replace(":id", visitor.id));
+      toast.success(t("applications.edit.success"));
+      navigate(AppPaths.applications.view.replace(":id", application.id));
     } catch (error) {
-      toast.error(t("visitors.edit.error"));
+      toast.error(t("applications.edit.error"));
     } finally {
       setSubmitting(false);
     }
@@ -84,27 +84,30 @@ const VisitorsEdit = () => {
       <Breadcrumb
         paths={[
           { label: t("breadcrumbs.dashboard"), to: AppPaths.dashboard },
-          { label: t("breadcrumbs.visitors"), to: AppPaths.visitors.all },
-          { label: t("breadcrumbs.editVisitor") },
+          {
+            label: t("breadcrumbs.applications"),
+            to: AppPaths.applications.all,
+          },
+          { label: t("breadcrumbs.editapplication") },
         ]}
       />
       <hr className="navigation-underline" />
 
       <Formik
         initialValues={{
-          doc_type: visitor.doc_type,
-          doc_id: visitor.doc_id,
-          name: visitor.name,
-          phone: visitor.phone,
-          email: visitor.email || "",
-          address: visitor.address || "",
+          doc_type: application.doc_type,
+          doc_id: application.doc_id,
+          name: application.name,
+          phone: application.phone,
+          email: application.email || "",
+          address: application.address || "",
           visit_time: format(
-            new Date(visitor.visit_time * 1000),
-            "yyyy-MM-dd HH:mm"
+            new Date(application.visit_time * 1000),
+            "yyyy-MM-dd HH:mm",
           ),
-          avatar: visitor.avatar,
+          avatar: application.avatar,
         }}
-        validationSchema={VisitorValidationSchema(t)}
+        validationSchema={ApplicationValidationSchema(t)}
         onSubmit={handleSubmit}
       >
         {({ setFieldValue, isSubmitting, setValues, values, errors }) => (
@@ -117,7 +120,7 @@ const VisitorsEdit = () => {
                     onConfirm={(imageSrc) =>
                       handleCapture(imageSrc, setFieldValue)
                     }
-                    btnText={t("visitors.edit.addPhoto")}
+                    btnText={t("applications.edit.addPhoto")}
                   />
                   <ErrorMessage
                     name="avatar"
@@ -129,7 +132,7 @@ const VisitorsEdit = () => {
             )}
             <div className="form-wrapper">
               <FormField
-                label={t("visitors.add.docType")}
+                label={t("applications.add.docType")}
                 name="doc_type"
                 as="select"
                 options={Object.entries(documentTypes)?.map(([value, key]) => ({
@@ -138,7 +141,7 @@ const VisitorsEdit = () => {
                 }))}
               />
               <FormField
-                label={t("visitors.edit.fin")}
+                label={t("applications.edit.fin")}
                 name="doc_id"
                 type="text"
                 className="form-control"
@@ -151,26 +154,26 @@ const VisitorsEdit = () => {
                 }}
               />
               <FormField
-                label={t("visitors.edit.name")}
+                label={t("applications.edit.name")}
                 name="name"
                 type="text"
                 className="form-control"
               />
               <FormField
-                label={t("visitors.edit.phone")}
+                label={t("applications.edit.phone")}
                 name="phone"
                 type="text"
                 className="form-control"
               />
 
               <FormField
-                label={t("visitors.edit.email")}
+                label={t("applications.edit.email")}
                 name="email"
                 type="email"
                 className="form-control"
               />
               <FormField
-                label={t("visitors.edit.address")}
+                label={t("applications.edit.address")}
                 name="address"
                 type="text"
                 className="form-control"
@@ -178,7 +181,7 @@ const VisitorsEdit = () => {
 
               {!isReception() && (
                 <FormField
-                  label={t("visitors.edit.visitTime")}
+                  label={t("applications.edit.visitTime")}
                   name="visit_time"
                   type="datetime-local"
                   className="form-control"
@@ -186,14 +189,14 @@ const VisitorsEdit = () => {
               )}
             </div>
             <ItemsTable
-              initialItems={visitor?.items}
+              initialItems={application?.items}
               onItemsUpdate={handleItemsUpdate}
             />
             <div className="form-footer">
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting
-                  ? t("visitors.edit.submitting")
-                  : t("visitors.edit.submit")}
+                  ? t("applications.edit.submitting")
+                  : t("applications.edit.submit")}
               </Button>
             </div>
           </FormikForm>
@@ -203,4 +206,4 @@ const VisitorsEdit = () => {
   );
 };
 
-export default VisitorsEdit;
+export default ApplicationsEdit;

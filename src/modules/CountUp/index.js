@@ -27,7 +27,7 @@ const CountUp = ({ start, end }) => {
   }, [startDate, end]);
 
   if (!start) {
-    return t("visitors.all.notStarted");
+    return t("applications.all.notStarted");
   }
 
   return (

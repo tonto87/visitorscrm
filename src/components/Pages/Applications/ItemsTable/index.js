@@ -86,7 +86,7 @@ const ItemsTable = ({
       )}
       {canAdd && (
         <Button variant="success" onClick={handleAddItem}>
-          {t("visitors.edit.addItem")}
+          {t("applications.edit.addItem")}
         </Button>
       )}
     </>

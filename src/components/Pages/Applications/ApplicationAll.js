@@ -7,7 +7,10 @@ import { format } from "date-fns";
 import { AppPaths } from "../../../constants/appPaths";
 import DataTable from "../../../modules/DataTable";
 import Breadcrumb from "../Breadcrumb";
-import { useDeleteVisitor, useFetchVisitors } from "../../../hooks/useVisitors";
+import {
+  useDeleteApplication,
+  useFetchApplications,
+} from "../../../hooks/useApplications";
 import Pager from "../../../modules/Pager";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -15,59 +18,62 @@ import Search from "../../../modules/Search";
 import CountUp from "../../../modules/CountUp";
 import { isAdmin } from "@helpers/userHelpers";
 
-const VisitorsAll = () => {
+const ApplicationsAll = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { data, isLoading, error } = useFetchVisitors();
-  const { mutateAsync } = useDeleteVisitor();
+  const { data, isLoading, error } = useFetchApplications();
+  const { mutateAsync } = useDeleteApplication();
 
   if (error) {
-    console.error(t("errorFetchingVisitors"), error);
-    return <div>{t("errorFetchingVisitorsMessage")}</div>;
+    console.error(t("errorFetchingApplications"), error);
+    return <div>{t("errorFetchingApplicationsMessage")}</div>;
   }
 
-  const visitors = data?.data || [];
+  const applications = data?.data || [];
   const meta = data?.meta;
 
   const handleDelete = async ({ id }) => {
-    if (window.confirm(t("visitors.all.deleteConfirm"))) {
+    if (window.confirm(t("applications.all.deleteConfirm"))) {
       try {
         await mutateAsync(id);
-        toast.success(t("visitors.all.deleteSuccess"));
+        toast.success(t("applications.all.deleteSuccess"));
       } catch (error) {
-        console.error(t("errorDeletingVisitor"), error);
-        toast.error(t("visitors.all.deleteError"));
+        console.error(t("errorDeletingapplication"), error);
+        toast.error(t("applications.all.deleteError"));
       }
     }
   };
 
   const handleEdit = ({ id }) => {
-    navigate(`/visitors/edit/${id}`);
+    navigate(`/applications/edit/${id}`);
   };
 
   const handleView = ({ id }) => {
-    navigate(`/visitors/view/${id}`);
+    navigate(`/applications/view/${id}`);
   };
 
   const headItems = [
-    t("visitors.all.name"),
-    t("visitors.all.fin"),
-    t("visitors.all.email"),
-    t("visitors.all.phone"),
-    t("visitors.all.visitTime"),
-    t("visitors.all.visitTimeCount"),
-    t("visitors.all.actions"),
+    t("applications.all.name"),
+    t("applications.all.fin"),
+    t("applications.all.email"),
+    t("applications.all.phone"),
+    t("applications.all.visitTime"),
+    t("applications.all.visitTimeCount"),
+    t("applications.all.actions"),
   ];
 
-  const items = visitors.map((visitor, index) => ({
-    id: visitor.id,
-    name: visitor.name,
-    doc_id: visitor.doc_id,
-    email: visitor.email || "N/A",
-    phone: visitor.phone || "N/A",
-    visit_time: format(new Date(visitor.visit_time * 1000), "dd MMM HH:mm"),
+  const items = applications.map((application, index) => ({
+    id: application.id,
+    name: application.name,
+    doc_id: application.doc_id,
+    email: application.email || "N/A",
+    phone: application.phone || "N/A",
+    visit_time: format(new Date(application.visit_time * 1000), "dd MMM HH:mm"),
     visit_time_count: (
-      <CountUp start={visitor.visit_start_date} end={visitor.visit_end_date} />
+      <CountUp
+        start={application.visit_start_date}
+        end={application.visit_end_date}
+      />
     ),
   }));
 
@@ -75,13 +81,13 @@ const VisitorsAll = () => {
     {
       text: <FaEye />,
       variant: "primary",
-      tooltip: t("visitors.all.view"),
+      tooltip: t("applications.all.view"),
       onClick: handleView,
     },
     {
       text: <FaEdit />,
       variant: "warning",
-      tooltip: t("visitors.all.edit"),
+      tooltip: t("applications.all.edit"),
       onClick: handleEdit,
     },
   ];
@@ -90,7 +96,7 @@ const VisitorsAll = () => {
     actionItems.push({
       text: <FaRegTrashAlt />,
       variant: "danger",
-      tooltip: t("visitors.all.delete"),
+      tooltip: t("applications.all.delete"),
       onClick: handleDelete,
     });
   }
@@ -100,18 +106,20 @@ const VisitorsAll = () => {
       <Breadcrumb
         paths={[
           { label: t("breadcrumbs.dashboard"), to: AppPaths.dashboard },
-          { label: t("breadcrumbs.visitors") },
+          { label: t("breadcrumbs.applications") },
         ]}
       />
 
       <div className="head-wrapper">
         <Search
-          path={AppPaths.visitors.all}
-          placeholder={t("visitors.all.searchPlaceholder")}
+          path={AppPaths.applications.all}
+          placeholder={t("applications.all.searchPlaceholder")}
         />
 
         <Button type="button" variant="success" className="add-btn">
-          <Link to={AppPaths.visitors.add}>{t("visitors.all.add")}</Link>
+          <Link to={AppPaths.applications.add}>
+            {t("applications.all.add")}
+          </Link>
         </Button>
       </div>
       <hr className="navigation-underline" />
@@ -133,4 +141,4 @@ const VisitorsAll = () => {
   );
 };
 
-export default VisitorsAll;
+export default ApplicationsAll;

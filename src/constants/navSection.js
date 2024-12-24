@@ -31,15 +31,15 @@ const sections = [
     ],
   },
   {
-    title: "navigation.visitors",
+    title: "navigation.applications",
     departments: [
       {
-        title: "navigation.visitors",
+        title: "navigation.applications",
         icon: <FaUser />,
         items: [
-          { label: "navigation.all", path: AppPaths.visitors.all },
-          { label: "navigation.add", path: AppPaths.visitors.add },
-          { label: "navigation.report", path: AppPaths.visitors.complaint },
+          { label: "navigation.all", path: AppPaths.applications.all },
+          { label: "navigation.add", path: AppPaths.applications.add },
+          { label: "navigation.report", path: AppPaths.applications.complaint },
         ],
       },
     ],

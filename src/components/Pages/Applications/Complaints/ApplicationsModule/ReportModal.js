@@ -19,21 +19,21 @@ const ReportModal = ({
 
   const submitReport = async () => {
     if (!description.trim()) {
-      toast.error(t("visitors.view.emptyDescriptionError"));
+      toast.error(t("applications.view.emptyDescriptionError"));
       return;
     }
 
     try {
       const newReportData = {
         description,
-        visitor_id: id,
+        application_id: id,
       };
       await mutateAsync(newReportData);
       onUpdateComplaints();
-      toast.success(t("visitors.view.successReport"));
+      toast.success(t("applications.view.successReport"));
     } catch (error) {
       console.error(error);
-      toast.error(t("visitors.view.errorReport"));
+      toast.error(t("applications.view.errorReport"));
     }
   };
 
@@ -41,8 +41,8 @@ const ReportModal = ({
     <Modal
       btnText={<FaExclamationTriangle />}
       onConfirm={submitReport}
-      title={t("visitors.view.report")}
-      btnProps={{ variant: "warning", tooltip: t("visitors.view.report") }}
+      title={t("applications.view.report")}
+      btnProps={{ variant: "warning", tooltip: t("applications.view.report") }}
     >
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
