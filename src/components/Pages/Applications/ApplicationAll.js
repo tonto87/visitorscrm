@@ -15,7 +15,6 @@ import Pager from "../../../modules/Pager";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Search from "../../../modules/Search";
-import CountUp from "../../../modules/CountUp";
 import { isAdmin } from "@helpers/userHelpers";
 
 const ApplicationsAll = () => {
@@ -38,7 +37,7 @@ const ApplicationsAll = () => {
         await mutateAsync(id);
         toast.success(t("applications.all.deleteSuccess"));
       } catch (error) {
-        console.error(t("errorDeletingapplication"), error);
+        console.error(t("errorDeletingApplication"), error);
         toast.error(t("applications.all.deleteError"));
       }
     }
@@ -54,27 +53,23 @@ const ApplicationsAll = () => {
 
   const headItems = [
     t("applications.all.name"),
-    t("applications.all.fin"),
-    t("applications.all.email"),
-    t("applications.all.phone"),
-    t("applications.all.visitTime"),
-    t("applications.all.visitTimeCount"),
+    t("applications.all.docId"),
+    t("applications.all.admissionDate"),
+    t("applications.all.tasks"),
+    t("applications.all.taskStatus"),
     t("applications.all.actions"),
   ];
 
-  const items = applications.map((application, index) => ({
-    id: application.id,
-    name: application.name,
+  const items = applications.map((application) => ({
+    id: application.officer_id,
+    name: `${application.citizen.name} ${application.citizen.surname}`,
     doc_id: application.doc_id,
-    email: application.email || "N/A",
-    phone: application.phone || "N/A",
-    visit_time: format(new Date(application.visit_time * 1000), "dd MMM HH:mm"),
-    visit_time_count: (
-      <CountUp
-        start={application.visit_start_date}
-        end={application.visit_end_date}
-      />
+    admission_date: format(
+      new Date(application.admission_date),
+      "dd MMM yyyy HH:mm",
     ),
+    tasks: application.tasks || "N/A",
+    task_status: application.task_status || "N/A",
   }));
 
   const actionItems = [

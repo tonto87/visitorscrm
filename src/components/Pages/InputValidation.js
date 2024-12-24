@@ -29,17 +29,36 @@ export const DepartmentValidationSchema = (t) =>
 
 export const ApplicationValidationSchema = (t) =>
   Yup.object({
-    name: Yup.string()
-      .min(3, t("validations.minLength.name"))
-      .required(t("validations.required.name")),
-    phone: Yup.string()
-      .matches(/^\d+$/, t("validations.pattern.phone"))
-      .optional(),
     doc_id: Yup.string()
       .min(3, t("validations.minLength.doc_id"))
       .required(t("validations.required.doc_id")),
-    email: Yup.string().email(t("validations.pattern.email")).optional(),
-    address: Yup.string().optional(),
+    name: Yup.string()
+      .min(3, t("validations.minLength.name"))
+      .required(t("validations.required.name")),
+    surname: Yup.string()
+      .min(3, t("validations.minLength.surname"))
+      .required(t("validations.required.surname")),
+    patronymic: Yup.string()
+      .min(3, t("validations.minLength.patronymic"))
+      .optional(),
+    admission_date: Yup.date().required(
+      t("validations.required.admission_date"),
+    ),
+    officer_id: Yup.string().required(
+      t("validations.required.officerSelection"),
+    ),
+    description: Yup.string().optional(),
+    tasks: Yup.string().optional(),
+    task_status: Yup.string().optional(),
+    citizen_status: Yup.string().optional(),
+    // phone: Yup.string()
+    //   .matches(/^\d+$/, t("validations.pattern.phone"))
+    //   .optional(),
+    // email: Yup.string()
+    //   .email(t("validations.pattern.email"))
+    //   .optional(),
+    // address: Yup.string()
+    //   .optional(),
   });
 
 export const UserValidationSchema = (t) =>

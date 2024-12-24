@@ -227,21 +227,17 @@
       "add": "Müraciət Əlavə Et",
       "searchPlaceholder": "Ad, Fin və ya Telefon axtar",
       "name": "Ad",
-      "photo": "Şəkil",
-      "docType": "Sənəd Növü",
-      "fin": "Fin",
-      "phone": "Telefon",
-      "email": "E-poçt",
+      "docId": "Sənəd Növü",
+      "admissionDate": "Qəbul Tarixi",
+      "tasks": "Tapşırıqlar",
+      "taskStatus": "Tapşırıq Statusu",
       "actions": "Əməliyyatlar",
       "view": "Məlumatları Göstər",
       "edit": "Redaktə Et",
       "delete": "Sil",
       "deleteConfirm": "Bu ziyarətçini silmək istədiyinizdən əminsiniz?",
       "deleteSuccess": "Müraciət uğurla silindi.",
-      "deleteError": "Ziyarətçini silmək alınmadı.",
-      "visitTime": "Müraciət Vaxtı",
-      "visitTimeCount": "Müraciət müddəti",
-      "notStarted": "Başlanmamış"
+      "deleteError": "Ziyarətçini silmək alınmadı."
     },
     "add": {
       "title": "Müraciət Əlavə Et",
@@ -261,7 +257,18 @@
       "submitting": "Göndərilir...",
       "reset": "Təmizlə",
       "success": "Müraciət uğurla əlavə olundu!",
-      "error": "Müraciət əlavə edilərkən xəta baş verdi."
+      "error": "Müraciət əlavə edilərkən xəta baş verdi.",
+      "officer_id": "Zabit ID",
+      "citizen_status": "Vətəndaş Statusu",
+      "description": "Təsvir",
+      "admission_date": "Qəbul Tarixi",
+      "tasks": "Tapşırıqlar",
+      "task_status": "Tapşırıq Statusu",
+      "citizen": {
+        "name": "Ad",
+        "surname": "Soyad",
+        "patronymic": "Ata adı"
+      }
     },
     "edit": {
       "title": "Ziyarətçini Redaktə Et",

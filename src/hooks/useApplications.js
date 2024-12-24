@@ -33,17 +33,26 @@ export const useFetchApplicationById = (id) => {
     queryFn: () => fetchApplication(id),
   });
 };
-
 export const useAddApplication = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (Application) => addApplication(Application),
+    mutationFn: (Application) => {
+      console.log("Отправляемые данные:", Application);
+      return addApplication(Application);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["applications"] });
     },
+    onError: (error) => {
+      console.error(
+        "Ошибка при добавлении заявки:",
+        error.response?.data || error.message,
+      );
+    },
   });
 };
+
 export const useFetchApplicationComplaints = (id) => {
   return useQuery({
     queryKey: ["applicationComplaint", id],

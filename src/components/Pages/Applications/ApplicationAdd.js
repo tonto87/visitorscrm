@@ -7,48 +7,49 @@ import { toast } from "react-toastify";
 import { format } from "date-fns";
 
 import { AppPaths } from "../../../constants/appPaths";
-import Capture from "../../../modules/Capture";
+// import Capture from "../../../modules/Capture";
 import Breadcrumb from "../Breadcrumb";
 import { ApplicationValidationSchema } from "../InputValidation";
-import {
-  useAddApplication,
-  useFetchDocumentTypes,
-} from "../../../hooks/useApplications";
-import LoadingForm from "../../../modules/Loading/Form";
+import { useAddApplication } from "../../../hooks/useApplications";
+import { useDeleteOfficer, useFetchOfficers } from "../../../hooks/useOfficers";
+
+// import LoadingForm from "../../../modules/Loading/Form";
 import FormField from "../FormField";
 import "./style.scss";
-import ItemsTable from "./ItemsTable";
-import { isReception } from "../../../helpers/userHelpers";
+// import ItemsTable from "./ItemsTable";
+// import { isReception } from "../../../helpers/userHelpers";
 
-const ApplicationsAdd = () => {
+const ApplicationAdd = () => {
   const { t } = useTranslation();
-
   const { mutateAsync } = useAddApplication();
-  const { data: documentTypesData, isLoading: isLoadingDocumentTypes } =
-    useFetchDocumentTypes();
-  const documentTypes = documentTypesData?.data;
-
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
 
-  const handleCapture = (imageSrc, setFieldValue) => {
-    setFieldValue("photo", imageSrc);
-  };
+  // const handleCapture = (imageSrc, setFieldValue) => {
+  //   setFieldValue("photo", imageSrc);
+  // };
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    const formattedAdmissionDate = format(
+      new Date(values.admission_date),
+      "yyyy-MM-dd HH:mm",
+    );
+
     const newFormData = {
-      applications: [
-        {
-          ...values,
-          avatar: values.photo,
-          items,
-          visiting_now: values.visiting_now ? 1 : 0,
-          visit_time: values?.visit_time
-            ? format(new Date(values.visit_time), "yyyy-MM-dd HH:mm")
-            : null,
-        },
-      ],
+      officer_id: values.officer_id,
+      citizen_status: values.citizen_status || "",
+      doc_id: values.doc_id,
+      description: values.description,
+      admission_date: formattedAdmissionDate,
+      tasks: values.tasks,
+      task_status: values.task_status,
+      citizen: {
+        name: values.name,
+        surname: values.surname,
+        patronymic: values.patronymic,
+      },
     };
+
     try {
       await mutateAsync(newFormData);
       setSubmitting(false);
@@ -59,13 +60,9 @@ const ApplicationsAdd = () => {
     }
   };
 
-  if (isLoadingDocumentTypes) {
-    return <LoadingForm />;
-  }
-
-  const handleItemsUpdate = (data) => {
-    setItems(data);
-  };
+  // const handleItemsUpdate = (data) => {
+  //   setItems(data);
+  // };
 
   const handleSuggestionSelect = (item, values, setValues) => {
     setValues({
@@ -92,109 +89,94 @@ const ApplicationsAdd = () => {
       <hr className="navigation-underline" />
       <Formik
         initialValues={{
-          name: "",
-          phone: "",
           doc_id: "",
-          email: "",
-          address: "",
-          photo: "",
-          doc_type: "id",
-          visit_time: "",
-          visiting_now: isReception() ? 1 : 0,
+          name: "",
+          surname: "",
+          patronymic: "",
+          officer_id: "",
+          admission_date: "",
+          description: "",
+          tasks: "",
+          task_status: "",
+          citizen_status: "",
         }}
         validationSchema={ApplicationValidationSchema(t)}
         onSubmit={handleSubmit}
       >
-        {({
-          setValues,
-          isSubmitting,
-          resetForm,
-          values,
-          setFieldValue,
-          errors,
-        }) => (
+        {({ setValues, isSubmitting, resetForm, values, setFieldValue }) => (
           <FormikForm className="add-form">
-            {isReception() && (
-              <Row className="mb-3">
-                <Form.Group as={Col} xs={12} md={3} controlId="photo">
-                  <Capture
-                    photo={values.photo}
-                    onConfirm={(imageSrc) =>
-                      handleCapture(imageSrc, setFieldValue)
-                    }
-                    btnText={t("applications.add.photo")}
-                  />
-                  <ErrorMessage
-                    name="photo"
-                    component="div"
-                    className="error"
-                  />
-                </Form.Group>
-              </Row>
-            )}
             <div className="form-wrapper">
-              <FormField
-                label={t("applications.add.docType")}
-                name="doc_type"
-                as="select"
-                options={Object.entries(documentTypes)?.map(([value, key]) => ({
-                  label: key,
-                  value: value,
-                }))}
-              />
+              {/* Document ID */}
               <FormField
                 label={t("applications.add.doc_id")}
                 name="doc_id"
                 type="text"
                 className="form-control"
-                withSuggestions
-                suggestionSettings={{
-                  docType: values.doc_type,
-                  docId: values.doc_id,
-                  onSelect: (item) =>
-                    handleSuggestionSelect(item, values, setValues),
-                }}
               />
-
+              {/* First Name */}
               <FormField
-                label={t("applications.add.name")}
+                label={t("applications.add.citizen.name")}
                 name="name"
                 type="text"
                 className="form-control"
               />
-
+              {/* Surname */}
               <FormField
-                label={t("applications.add.phone")}
-                name="phone"
+                label={t("applications.add.citizen.surname")}
+                name="surname"
                 type="text"
                 className="form-control"
               />
-
+              {/* Patronymic */}
               <FormField
-                label={t("applications.add.email")}
-                name="email"
-                type="email"
-                className="form-control"
-              />
-              <FormField
-                label={t("applications.add.address")}
-                name="address"
+                label={t("applications.add.citizen.patronymic")}
+                name="patronymic"
                 type="text"
                 className="form-control"
               />
-
-              {!isReception() && (
-                <div className="form-row  visit-time-input">
-                  <FormField
-                    label={t("applications.add.visitTime")}
-                    name="visit_time"
-                    type="datetime-local"
-                    className="form-control"
-                  />
-                </div>
-              )}
+              {/* Admission Date */}
+              <FormField
+                label={t("applications.add.admission_date")}
+                name="admission_date"
+                type="datetime-local"
+                className="form-control"
+              />
+              {/* Tasks */}
+              <FormField
+                label={t("applications.add.tasks")}
+                name="tasks"
+                type="text"
+                className="form-control"
+              />
+              {/* Officer id */}
+              <FormField
+                label={t("applications.add.officer_id")}
+                name="officer_id"
+                type="text"
+                className="form-control"
+              />
+              {/* Task Status */}
+              <FormField
+                label={t("applications.add.task_status")}
+                name="task_status"
+                type="text"
+                className="form-control"
+              />
+              {/* Citizen Status */}
+              <FormField
+                label={t("applications.add.citizen_status")}
+                name="citizen_status"
+                type="text"
+                className="form-control"
+              />
+              {/* Description */}
+              <FormField
+                label={t("applications.add.description")}
+                name="description"
+                type="text"
+                className="form-control"
+              />
             </div>
-            <ItemsTable initialItems={[]} onItemsUpdate={handleItemsUpdate} />
             <div className="form-footer">
               <Button variant="success" type="submit" disabled={isSubmitting}>
                 {isSubmitting
@@ -206,7 +188,6 @@ const ApplicationsAdd = () => {
                 type="button"
                 onClick={() => {
                   resetForm();
-                  setItems([]);
                 }}
               >
                 {t("applications.add.reset")}
@@ -219,4 +200,4 @@ const ApplicationsAdd = () => {
   );
 };
 
-export default ApplicationsAdd;
+export default ApplicationAdd;

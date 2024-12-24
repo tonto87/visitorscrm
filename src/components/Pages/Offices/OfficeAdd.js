@@ -13,7 +13,8 @@ import { OfficeValidationSchema } from "../InputValidation";
 import "./style.scss";
 
 const OfficeAdd = () => {
-  const { data: offices } = useSelector((state) => state.offices);
+  const { data: offices } = useSelector((state) => state.offices || {});
+
   const { mutateAsync, isPending } = useAddOffice();
   const { t } = useTranslation();
 
