@@ -1,77 +1,55 @@
-import { Formik, Form as FormikForm, ErrorMessage } from "formik";
-import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Formik, Form as FormikForm } from "formik";
+import React from "react";
+import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
-
 import { AppPaths } from "../../../constants/appPaths";
-// import Capture from "../../../modules/Capture";
 import Breadcrumb from "../Breadcrumb";
 import { ApplicationValidationSchema } from "../InputValidation";
 import { useAddApplication } from "../../../hooks/useApplications";
-import { useDeleteOfficer, useFetchOfficers } from "../../../hooks/useOfficers";
-
-// import LoadingForm from "../../../modules/Loading/Form";
+import { useFetchOfficers } from "../../../hooks/useOfficers";
 import FormField from "../FormField";
 import "./style.scss";
-// import ItemsTable from "./ItemsTable";
-// import { isReception } from "../../../helpers/userHelpers";
 
 const ApplicationAdd = () => {
   const { t } = useTranslation();
   const { mutateAsync } = useAddApplication();
+  const { data, isLoading } = useFetchOfficers();
+  const officers = data?.data || [];
   const navigate = useNavigate();
-  const [items, setItems] = useState([]);
-
-  // const handleCapture = (imageSrc, setFieldValue) => {
-  //   setFieldValue("photo", imageSrc);
-  // };
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    const formattedAdmissionDate = format(
-      new Date(values.admission_date),
-      "yyyy-MM-dd HH:mm",
-    );
-
-    const newFormData = {
-      officer_id: values.officer_id,
-      citizen_status: values.citizen_status || "",
-      doc_id: values.doc_id,
-      description: values.description,
-      admission_date: formattedAdmissionDate,
-      tasks: values.tasks,
-      task_status: values.task_status,
-      citizen: {
-        name: values.name,
-        surname: values.surname,
-        patronymic: values.patronymic,
-      },
-    };
-
     try {
+      const formattedAdmissionDate = format(
+        new Date(values.admission_date),
+        "yyyy-MM-dd HH:mm",
+      );
+
+      const newFormData = {
+        officer_id: values.officer_id,
+        citizen_status: values.citizen_status || "",
+        doc_id: values.doc_id,
+        description: values.description,
+        admission_date: formattedAdmissionDate,
+        tasks: values.tasks,
+        task_status: values.task_status,
+        citizen: {
+          name: values.name,
+          surname: values.surname,
+          patronymic: values.patronymic,
+        },
+      };
+
       await mutateAsync(newFormData);
-      setSubmitting(false);
       toast.success(t("applications.add.success"));
       navigate(AppPaths.applications.all);
     } catch (error) {
       toast.error(t("applications.add.error"));
+    } finally {
+      setSubmitting(false);
     }
-  };
-
-  // const handleItemsUpdate = (data) => {
-  //   setItems(data);
-  // };
-
-  const handleSuggestionSelect = (item, values, setValues) => {
-    setValues({
-      ...values,
-      name: item.name || "",
-      phone: item.phone || "",
-      email: item.email || "",
-      address: item.address || "",
-    });
   };
 
   return (
@@ -103,73 +81,80 @@ const ApplicationAdd = () => {
         validationSchema={ApplicationValidationSchema(t)}
         onSubmit={handleSubmit}
       >
-        {({ setValues, isSubmitting, resetForm, values, setFieldValue }) => (
+        {({ isSubmitting, resetForm }) => (
           <FormikForm className="add-form">
             <div className="form-wrapper">
-              {/* Document ID */}
               <FormField
                 label={t("applications.add.doc_id")}
                 name="doc_id"
                 type="text"
                 className="form-control"
               />
-              {/* First Name */}
               <FormField
                 label={t("applications.add.citizen.name")}
                 name="name"
                 type="text"
                 className="form-control"
               />
-              {/* Surname */}
               <FormField
                 label={t("applications.add.citizen.surname")}
                 name="surname"
                 type="text"
                 className="form-control"
               />
-              {/* Patronymic */}
               <FormField
                 label={t("applications.add.citizen.patronymic")}
                 name="patronymic"
                 type="text"
                 className="form-control"
               />
-              {/* Admission Date */}
               <FormField
                 label={t("applications.add.admission_date")}
                 name="admission_date"
                 type="datetime-local"
                 className="form-control"
               />
-              {/* Tasks */}
               <FormField
                 label={t("applications.add.tasks")}
                 name="tasks"
                 type="text"
                 className="form-control"
               />
-              {/* Officer id */}
-              <FormField
-                label={t("applications.add.officer_id")}
-                name="officer_id"
-                type="text"
-                className="form-control"
-              />
-              {/* Task Status */}
+              <div className="form-group">
+                <label htmlFor="officer_id">
+                  {t("applications.add.officer_id")}
+                </label>
+                <select
+                  id="officer_id"
+                  name="officer_id"
+                  className="form-control"
+                >
+                  <option value="" disabled>
+                    {t("applications.add.selectOfficer")}
+                  </option>
+                  {isLoading ? (
+                    <option>{t("loading")}</option>
+                  ) : (
+                    officers.map((officer) => (
+                      <option key={officer.id} value={officer.id}>
+                        {officer.name}
+                      </option>
+                    ))
+                  )}
+                </select>
+              </div>
               <FormField
                 label={t("applications.add.task_status")}
                 name="task_status"
                 type="text"
                 className="form-control"
               />
-              {/* Citizen Status */}
               <FormField
                 label={t("applications.add.citizen_status")}
                 name="citizen_status"
                 type="text"
                 className="form-control"
               />
-              {/* Description */}
               <FormField
                 label={t("applications.add.description")}
                 name="description"
@@ -183,13 +168,7 @@ const ApplicationAdd = () => {
                   ? t("applications.add.submitting")
                   : t("applications.add.submit")}
               </Button>
-              <Button
-                variant="danger"
-                type="button"
-                onClick={() => {
-                  resetForm();
-                }}
-              >
+              <Button variant="danger" type="button" onClick={resetForm}>
                 {t("applications.add.reset")}
               </Button>
             </div>

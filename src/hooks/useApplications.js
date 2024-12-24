@@ -38,17 +38,13 @@ export const useAddApplication = () => {
 
   return useMutation({
     mutationFn: (Application) => {
-      console.log("Отправляемые данные:", Application);
       return addApplication(Application);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["applications"] });
     },
     onError: (error) => {
-      console.error(
-        "Ошибка при добавлении заявки:",
-        error.response?.data || error.message,
-      );
+      console.error(error.response?.data || error.message);
     },
   });
 };

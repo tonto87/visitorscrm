@@ -55,21 +55,18 @@ const ApplicationsAll = () => {
     t("applications.all.name"),
     t("applications.all.docId"),
     t("applications.all.admissionDate"),
-    t("applications.all.tasks"),
-    t("applications.all.taskStatus"),
     t("applications.all.actions"),
   ];
 
   const items = applications.map((application) => ({
     id: application.officer_id,
-    name: `${application.citizen.name} ${application.citizen.surname}`,
+    // Используем опциональную цепочку для предотвращения ошибки, если "citizen" не существует
+    name: `${application.citizen?.name || "N/A"} ${application.citizen?.surname || "N/A"}`,
     doc_id: application.doc_id,
     admission_date: format(
       new Date(application.admission_date),
       "dd MMM yyyy HH:mm",
     ),
-    tasks: application.tasks || "N/A",
-    task_status: application.task_status || "N/A",
   }));
 
   const actionItems = [
