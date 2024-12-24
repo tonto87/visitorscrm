@@ -41,5 +41,6 @@ export const AppPaths = {
     forbidden: "/403",
   },
   reports: "/reports",
+
   profile: "/profile",
 };

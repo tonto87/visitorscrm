@@ -71,9 +71,7 @@ const sections = [
       {
         title: "navigation.reports",
         icon: <FaFileAlt />,
-        items: [
-          { label: "navigation.reports", path: AppPaths.reports.reports },
-        ],
+        items: [{ label: "navigation.reports", path: AppPaths.reports }],
       },
     ],
   },

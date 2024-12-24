@@ -362,6 +362,16 @@
     },
     "backToLogin": "Back"
   },
+  "reports": {
+    "download_report": "Download Report",
+    "download_description": "Click the button below to download the latest report in Excel format (.xlsx).",
+    "downloading": "Downloading...",
+    "toast": {
+      "downloadError": "Error occurred while downloading report.",
+      "downloadSuccess": "Report downloaded successfully!",      
+      "fetchError": "Error occurred while fetching report data."
+    }
+  },
   "error": {
     "forbidden": {
       "title": "403",
