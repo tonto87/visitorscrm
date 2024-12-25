@@ -1,6 +1,6 @@
-import { Formik, Form as FormikForm, ErrorMessage } from "formik";
-import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Formik, Form as FormikForm } from "formik";
+import React from "react";
+import { Button, Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -10,27 +10,22 @@ import Breadcrumb from "../Breadcrumb";
 import "./style.scss";
 import { ApplicationValidationSchema } from "../InputValidation";
 import {
-  useFetchDocumentTypes,
   useFetchApplicationById,
   useUpdateApplication,
 } from "../../../hooks/useApplications";
 import LoadingForm from "../../../modules/Loading/Form";
 import FormField from "../FormField";
-import Capture from "../../../modules/Capture";
 import { format } from "date-fns";
-import ItemsTable from "./ItemsTable";
-import { isReception } from "@helpers/userHelpers";
+import { useFetchOfficers } from "@hooks/useOfficers";
 
 const ApplicationsEdit = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { data, isLoading } = useFetchApplicationById(id);
-  const [items, setItems] = useState([]);
   const application = data?.data;
-
-  const { data: documentTypesData, isLoading: isLoadingDocumentTypes } =
-    useFetchDocumentTypes();
-  const documentTypes = documentTypesData?.data;
+  const { data: officerData, isLoading: isOfficersLoading } =
+    useFetchOfficers();
+  const officers = officerData?.data || [];
 
   const { mutateAsync } = useUpdateApplication();
 
@@ -39,14 +34,14 @@ const ApplicationsEdit = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const formattedVisitTime = format(
-        new Date(values.visit_time),
-        "yyyy-MM-dd HH:mm",
+        new Date(values.admission_date),
+        "yyyy-MM-dd HH:mm"
       );
 
       await mutateAsync({
         id: application.id,
-        application: { ...values, items },
-        visit_time: formattedVisitTime,
+        application: values,
+        admission_date: formattedVisitTime,
       });
       setSubmitting(false);
       toast.success(t("applications.edit.success"));
@@ -58,27 +53,19 @@ const ApplicationsEdit = () => {
     }
   };
 
-  const handleCapture = (imageSrc, setFieldValue) => {
-    setFieldValue("avatar", imageSrc);
-  };
-
-  if (isLoading || isLoadingDocumentTypes) {
+  if (isLoading) {
     return <LoadingForm />;
   }
 
-  const handleItemsUpdate = (data) => {
-    setItems(data);
-  };
-
-  const handleSuggestionSelect = (item, values, setValues) => {
-    setValues({
-      ...values,
-      name: item.name || "",
-      phone: item.phone || "",
-      email: item.email || "",
-      address: item.address || "",
-    });
-  };
+  // const handleSuggestionSelect = (item, values, setValues) => {
+  //   setValues({
+  //     ...values,
+  //     name: item.name || "",
+  //     phone: item.phone || "",
+  //     email: item.email || "",
+  //     address: item.address || "",
+  //   });
+  // };
   return (
     <div className="user-container">
       <Breadcrumb
@@ -95,108 +82,129 @@ const ApplicationsEdit = () => {
 
       <Formik
         initialValues={{
-          doc_type: application.doc_type,
           doc_id: application.doc_id,
           name: application.name,
-          phone: application.phone,
-          email: application.email || "",
-          address: application.address || "",
-          visit_time: format(
-            new Date(application.visit_time * 1000),
-            "yyyy-MM-dd HH:mm",
+          surname: application.surname,
+          patronymic: application.patronymic,
+          officer_id: application.officer_id,
+          admission_date: format(
+            new Date(application.admission_date * 1000),
+            "yyyy-MM-dd HH:mm"
           ),
-          avatar: application.avatar,
+          description: application.description,
+          tasks: application.tasks || "",
+          task_status: application.task_status || "",
+          citizen_status: application.citizen_status || "",
         }}
         validationSchema={ApplicationValidationSchema(t)}
         onSubmit={handleSubmit}
       >
-        {({ setFieldValue, isSubmitting, setValues, values, errors }) => (
+        {({ isSubmitting, resetForm, errors, values, setFieldValue }) => (
           <FormikForm className="add-form">
-            {isReception() && (
-              <Row className="mb-3">
-                <Form.Group as={Col} xs={12} md={3} controlId="photo">
-                  <Capture
-                    photo={values.avatar}
-                    onConfirm={(imageSrc) =>
-                      handleCapture(imageSrc, setFieldValue)
-                    }
-                    btnText={t("applications.edit.addPhoto")}
-                  />
-                  <ErrorMessage
-                    name="avatar"
-                    component="div"
-                    className="error"
-                  />
-                </Form.Group>
-              </Row>
-            )}
+            {console.log({ errors, values })}
             <div className="form-wrapper">
               <FormField
-                label={t("applications.add.docType")}
-                name="doc_type"
-                as="select"
-                options={Object.entries(documentTypes)?.map(([value, key]) => ({
-                  label: key,
-                  value: value,
-                }))}
-              />
-              <FormField
-                label={t("applications.edit.fin")}
+                label={t("applications.add.doc_id")}
                 name="doc_id"
                 type="text"
                 className="form-control"
-                withSuggestions
-                suggestionSettings={{
-                  docType: values.doc_type,
-                  docId: values.doc_id,
-                  onSelect: (item) =>
-                    handleSuggestionSelect(item, values, setValues),
-                }}
               />
               <FormField
-                label={t("applications.edit.name")}
+                label={t("applications.add.citizen.name")}
                 name="name"
                 type="text"
                 className="form-control"
               />
               <FormField
-                label={t("applications.edit.phone")}
-                name="phone"
+                label={t("applications.add.citizen.surname")}
+                name="surname"
                 type="text"
                 className="form-control"
               />
-
               <FormField
-                label={t("applications.edit.email")}
-                name="email"
-                type="email"
-                className="form-control"
-              />
-              <FormField
-                label={t("applications.edit.address")}
-                name="address"
+                label={t("applications.add.citizen.patronymic")}
+                name="patronymic"
                 type="text"
                 className="form-control"
               />
-
-              {!isReception() && (
-                <FormField
-                  label={t("applications.edit.visitTime")}
-                  name="visit_time"
-                  type="datetime-local"
+              <FormField
+                label={t("applications.add.admission_date")}
+                name="admission_date"
+                type="datetime-local"
+                className="form-control"
+              />
+              <FormField
+                label={t("applications.add.tasks")}
+                name="tasks"
+                type="text"
+                className="form-control"
+              />
+              <div className="form-group">
+                <label htmlFor="officer_id">
+                  {t("applications.add.officer_id")}
+                </label>
+                <Form.Select
+                  aria-label="Default select example"
+                  id="officer_id"
+                  name="officer_id"
                   className="form-control"
-                />
-              )}
+                  value={values.officer_id}
+                  onChange={(e) => {
+                    setFieldValue("officer_id", e.target.value);
+                  }}
+                >
+                  <option value="" disabled>
+                    {t("applications.add.selectOfficer")}
+                  </option>
+                  {isOfficersLoading ? (
+                    <option>{t("loading")}</option>
+                  ) : (
+                    officers.map((officer) => (
+                      <option key={officer.id} value={officer.id}>
+                        {officer.name}
+                      </option>
+                    ))
+                  )}
+                </Form.Select>
+              </div>
+              <FormField
+                label={t("applications.add.task_status")}
+                name="task_status"
+                type="text"
+                className="form-control"
+              />
+              <FormField
+                label={t("applications.add.citizen_status")}
+                name="citizen_status"
+                type="text"
+                className="form-control"
+              />
+              <div className="form-row">
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Label>{t("applications.add.description")}</Form.Label>
+                  <Form.Control
+                    value={values.description}
+                    onChange={(e) => {
+                      setFieldValue("description", e.target.value);
+                    }}
+                    name="description"
+                    as="textarea"
+                    rows={3}
+                  />
+                </Form.Group>
+              </div>
             </div>
-            <ItemsTable
-              initialItems={application?.items}
-              onItemsUpdate={handleItemsUpdate}
-            />
             <div className="form-footer">
-              <Button type="submit" disabled={isSubmitting}>
+              <Button variant="success" type="submit" disabled={isSubmitting}>
                 {isSubmitting
-                  ? t("applications.edit.submitting")
-                  : t("applications.edit.submit")}
+                  ? t("applications.add.submitting")
+                  : t("applications.add.submit")}
+              </Button>
+              <Button variant="danger" type="button" onClick={resetForm}>
+                {t("applications.add.reset")}
               </Button>
             </div>
           </FormikForm>

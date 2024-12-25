@@ -1,6 +1,6 @@
 import { Formik, Form as FormikForm } from "formik";
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,23 +8,30 @@ import { format } from "date-fns";
 import { AppPaths } from "../../../constants/appPaths";
 import Breadcrumb from "../Breadcrumb";
 import { ApplicationValidationSchema } from "../InputValidation";
-import { useAddApplication } from "../../../hooks/useApplications";
+import {
+  useAddApplication,
+  useFetchCitizenStatuses,
+} from "../../../hooks/useApplications";
 import { useFetchOfficers } from "../../../hooks/useOfficers";
 import FormField from "../FormField";
 import "./style.scss";
+import LoadingForm from "modules/Loading/Form";
 
 const ApplicationAdd = () => {
   const { t } = useTranslation();
   const { mutateAsync } = useAddApplication();
+  const { data: citizenData, isLoading: isCitizenLoading } =
+    useFetchCitizenStatuses();
   const { data, isLoading } = useFetchOfficers();
+  const citizenStatuses = citizenData?.data || [];
   const officers = data?.data || [];
   const navigate = useNavigate();
-
+  console.log({ citizenStatuses });
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const formattedAdmissionDate = format(
         new Date(values.admission_date),
-        "yyyy-MM-dd HH:mm",
+        "yyyy-MM-dd HH:mm"
       );
 
       const newFormData = {
@@ -51,6 +58,20 @@ const ApplicationAdd = () => {
       setSubmitting(false);
     }
   };
+
+  if (isLoading || isCitizenLoading) {
+    return <LoadingForm />;
+  }
+
+  const citizenOptions = Object.keys(citizenStatuses).map((key) => ({
+    value: key,
+    label: citizenStatuses[key],
+  }));
+
+  const officerOptions = officers.map((officer) => ({
+    value: officer.id,
+    label: `${officer.name} ${officer.surname}`,
+  }));
 
   return (
     <div className="user-container">
@@ -81,8 +102,9 @@ const ApplicationAdd = () => {
         validationSchema={ApplicationValidationSchema(t)}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, resetForm }) => (
+        {({ isSubmitting, resetForm, errors, values, setFieldValue }) => (
           <FormikForm className="add-form">
+            {console.log({ errors, values })}
             <div className="form-wrapper">
               <FormField
                 label={t("applications.add.doc_id")}
@@ -120,29 +142,14 @@ const ApplicationAdd = () => {
                 type="text"
                 className="form-control"
               />
-              <div className="form-group">
-                <label htmlFor="officer_id">
-                  {t("applications.add.officer_id")}
-                </label>
-                <select
-                  id="officer_id"
-                  name="officer_id"
-                  className="form-control"
-                >
-                  <option value="" disabled>
-                    {t("applications.add.selectOfficer")}
-                  </option>
-                  {isLoading ? (
-                    <option>{t("loading")}</option>
-                  ) : (
-                    officers.map((officer) => (
-                      <option key={officer.id} value={officer.id}>
-                        {officer.name}
-                      </option>
-                    ))
-                  )}
-                </select>
-              </div>
+              <FormField
+                label={t("applications.add.officer_id")}
+                name="officer_id"
+                className="form-control"
+                emptyValue={t("applications.add.selectOfficer")}
+                as="select"
+                options={officerOptions}
+              />
               <FormField
                 label={t("applications.add.task_status")}
                 name="task_status"
@@ -152,15 +159,28 @@ const ApplicationAdd = () => {
               <FormField
                 label={t("applications.add.citizen_status")}
                 name="citizen_status"
-                type="text"
                 className="form-control"
+                emptyValue={t("applications.add.selectCitizenStatus")}
+                as="select"
+                options={citizenOptions}
               />
-              <FormField
-                label={t("applications.add.description")}
-                name="description"
-                type="text"
-                className="form-control"
-              />
+              <div className="form-row">
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Label>{t("applications.add.description")}</Form.Label>
+                  <Form.Control
+                    value={values.description}
+                    onChange={(e) => {
+                      setFieldValue("description", e.target.value);
+                    }}
+                    name="description"
+                    as="textarea"
+                    rows={3}
+                  />
+                </Form.Group>
+              </div>
             </div>
             <div className="form-footer">
               <Button variant="success" type="submit" disabled={isSubmitting}>

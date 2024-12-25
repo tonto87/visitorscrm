@@ -12,6 +12,7 @@ import {
   startVisit,
   endVisit,
   unblockApplicationApi,
+  fetchCitizenStatuses,
 } from "../api/applicationsApi";
 
 import useQueryParams from "./useQueryParams";
@@ -63,7 +64,7 @@ export const useUpdateApplication = () => {
     mutationFn: (data) =>
       updateApplication(data.id, {
         ...data.application,
-        visit_time: data.visit_time.replace("T", " "),
+        admission_date: data.admission_date.replace("T", " "),
       }),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ["applications"] });
@@ -161,5 +162,12 @@ export const useEndVisit = () => {
         queryKey: ["application", id.toString()],
       });
     },
+  });
+};
+
+export const useFetchCitizenStatuses = () => {
+  return useQuery({
+    queryKey: ["citizenStatuses"],
+    queryFn: fetchCitizenStatuses,
   });
 };
