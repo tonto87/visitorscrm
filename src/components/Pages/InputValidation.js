@@ -56,16 +56,6 @@ export const ApplicationValidationSchema = (t) =>
     tasks: Yup.string().optional(),
     task_status: Yup.string().optional(),
     citizen_status: Yup.string().optional(),
-
-    // phone: Yup.string()
-    //   .matches(/^\d+$/, t("validations.pattern.phone"))
-    //   .optional(),
-
-    // email: Yup.string()
-    //   .email(t("validations.pattern.email"))
-    //   .optional(),
-
-    // address: Yup.string().optional()
   });
 
 export const UserValidationSchema = (t) =>

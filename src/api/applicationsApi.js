@@ -66,3 +66,8 @@ export const endVisit = async (id) => {
   const response = await apiClient.get(`/applications/${id}/end-visit`);
   return response.data;
 };
+
+export const fetchCitizenStatuses = async () => {
+  const response = await apiClient.get("/applications/get/citizen-statuses");
+  return response.data;
+};

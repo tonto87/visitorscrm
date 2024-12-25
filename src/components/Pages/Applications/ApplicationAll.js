@@ -59,13 +59,12 @@ const ApplicationsAll = () => {
   ];
 
   const items = applications.map((application) => ({
-    id: application.officer_id,
-    // Используем опциональную цепочку для предотвращения ошибки, если "citizen" не существует
-    name: `${application.citizen?.name || "N/A"} ${application.citizen?.surname || "N/A"}`,
+    id: application.id,
+    name: `${application?.name || "N/A"} ${application?.surname || "N/A"}`,
     doc_id: application.doc_id,
     admission_date: format(
-      new Date(application.admission_date),
-      "dd MMM yyyy HH:mm",
+      new Date(application.admission_date * 1000),
+      "dd MMM yyyy HH:mm"
     ),
   }));
 
