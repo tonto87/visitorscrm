@@ -1,4 +1,4 @@
-.visitor-view {
+.application-view {
   border: none !important;
   background: none !important;
   border-radius: 5px;
@@ -9,14 +9,6 @@
   width: 100% !important;
   flex-direction: column;
   box-shadow: none !important;
-
-  .blocked-overlay {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--danger-color) !important;
-    margin-bottom: 12px;
-  }
 
   &-header {
     background-color: var(--card-bg);
@@ -40,8 +32,8 @@
     }
   }
   &-info {
-    border-right: 0.5px solid var(--border-color) !important;
-    border-left: 0.5px solid var(--border-color) !important;
+    // border-right: 0.5px solid var(--border-color) !important;
+    // border-left: 0.5px solid var(--border-color) !important;
     margin: 0 20px;
     width: 100%;
     display: flex;
@@ -76,7 +68,7 @@
 }
 
 @media (max-width: 600px) {
-  .visitor-view-card {
+  .application-view-card {
     width: 100%;
     padding: 15px;
   }
