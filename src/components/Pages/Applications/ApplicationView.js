@@ -1,9 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import {
-  useFetchApplicationById,
-} from "../../../hooks/useApplications";
+import { useFetchApplicationById } from "../../../hooks/useApplications";
 import Breadcrumb from "../Breadcrumb";
 import LoadingForm from "../../../modules/Loading/Form";
 import "./style.scss";
@@ -16,7 +14,7 @@ const ApplicationsView = () => {
   const { data: applicationData } = useFetchApplicationById(id);
 
   const application = applicationData?.data;
-
+  console.log({ application });
 
   if (!application) {
     return <LoadingForm />;
@@ -45,6 +43,10 @@ const ApplicationsView = () => {
             <p>
               <strong>{t("applications.view.fin")}:</strong>{" "}
               {application.doc_id}
+            </p>
+            <p>
+              <strong>{t("applications.add.officer_name")}:</strong>{" "}
+              {application.officer}
             </p>
             <p>
               <strong>{t("applications.view.phone")}:</strong>{" "}

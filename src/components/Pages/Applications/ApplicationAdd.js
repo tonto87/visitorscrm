@@ -31,7 +31,7 @@ const ApplicationAdd = () => {
     try {
       const formattedAdmissionDate = format(
         new Date(values.admission_date),
-        "yyyy-MM-dd HH:mm"
+        "yyyy-MM-dd HH:mm",
       );
 
       const newFormData = {
@@ -143,7 +143,7 @@ const ApplicationAdd = () => {
                 className="form-control"
               />
               <FormField
-                label={t("applications.add.officer_id")}
+                label={t("applications.add.officer_name")}
                 name="officer_id"
                 className="form-control"
                 emptyValue={t("applications.add.selectOfficer")}
@@ -160,7 +160,7 @@ const ApplicationAdd = () => {
                 label={t("applications.add.citizen_status")}
                 name="citizen_status"
                 className="form-control"
-                emptyValue={t("applications.add.selectCitizenStatus")}
+                emptyValue={t("applications.add.selectcitizenstatus")}
                 as="select"
                 options={citizenOptions}
               />
